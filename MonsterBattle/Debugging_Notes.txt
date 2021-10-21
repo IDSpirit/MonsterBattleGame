@@ -1,0 +1,29 @@
+volc is fire/bug, skarmory is steel/flying
+
+volcarona uses fiery dance on skarmory
+fire type attack on a steel and flying type pokemon
+fire is 2x against steel defense and 1x against flying defense
+
+
+
+Things to test:
+Does doing a super effective move on a poke with one type do 4x damage (which it shouldn't)?
+
+Add functionality for:
+DONE - Moves that do a fixed amount of damage as an attribute for "Moves" (e.g. dragon breath, night shade etc.)
+DONE - Remove hardcoded names in menu and refactor variable names
+DONE - Add stat modifiers to the menu
+DONE - Setting moveset to a list of object "Moves" which is a field of the Pokemon class
+DONE - Incorporate functionality for moves that have a chance of increasing a stat
+DONE - Including the stat modifier stage system from +6 to -6 and the stat change for each stage https://bulbapedia.bulbagarden.net/wiki/Statistic#Stage_multipliers
+DONE - Remove the hardcoded stat increase and modify it for a general stat change
+ONGOING - PP actually decreasing after each use of a move, and having pp be shown for each move on screen
+
+- Have CPU pick a random attack to use (can add more complex functionality later)
+- Accuracy and evasion for both moves and for the pokemon themselves
+- Moves that have a chance at increasing more than one stat (can do this by setting the variables that will change as a list
+- Moves that hit multiple times e.g. bullet seed, power punch etc.
+- Moves with priority e.g. quick attack
+- User picks the moves they want from a selection of available moves for a particular pokemon e.g. All moves are shown with an accompanying
+number, with the user picking one number at a time until 4 have been picked. If a number is chosen that's already been picked, then the user is notified
+- Remove hardcoded message for the move fly

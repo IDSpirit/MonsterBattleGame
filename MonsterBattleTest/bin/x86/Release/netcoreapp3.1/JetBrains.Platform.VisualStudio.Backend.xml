@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.VisualStudio.Backend</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.Doh.FileSystemDocumentOperationsHandler">
+            <summary>
+            When the document is not open in Visual Studio RDT, operates on the disk files directly.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.Doh.FileSystemDocumentOperationsHandler.FileDidNotExist">
+            <summary>
+            The file did not exist at the moment when the operation handler was created.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.Doh.FileSystemDocumentOperationsHandler.Moniker">
+            <summary>
+            Gets the document moniker (an arbitrary string that helps with identifying this document).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.Doh.IDocumentOperationsHandler">
+            <summary>
+            Base interface for the pluggable part of the <see cref="T:JetBrains.DocumentModel.IDocument"/> implementation that switches between feeding on file system entities and Visual Studio RDT Text Buffers.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.Doh.IDocumentOperationsHandler.Moniker">
+            <summary>
+            Gets the document moniker (an arbitrary string that helps with identifying this document).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.Doh.TextDocumentOperationsHandler">
+            <summary>
+            A simple operations handler for in-memory documents.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.Doh.TransitionalDocumentOperationsHandler">
+            <summary>
+            Document operations handler that exists when backend requested document open but the document is not bound to the frontend yet
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.VsDocumentWhidbey.myReadOnlyLockRequests">
+            <summary>
+            Read-only requests for the whole document.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.VsDocumentWhidbey.Moniker">
+            <summary>
+            Gets the document moniker (an arbitrary string that helps with identifying this document).
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.VsDocumentWhidbey.MakeReadonly(JetBrains.Lifetimes.Lifetime,JetBrains.Util.TextRange)">
+            <summary>
+            Locks a document range temporarily to prevent it from being edited. To unlock, dispose of the return value.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.VsDocumentWhidbey.Release(JetBrains.Util.FileSystemPath)">
+            <summary>
+            Free resources and make the document ready for subsequent reuse.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.VsDocumentWhidbey.GetDocumentOperationsHandler">
+            <summary>
+            For testing purposes only. Do not use it in features.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.Backend.DocumentModel.Whidbey.VsInMemoryDocumentFactoryWhidbey.CreateIdeDocumentFromText(JetBrains.Lifetimes.Lifetime,System.String,System.String,System.Func{JetBrains.DocumentModel.IDocument,JetBrains.Util.ModificationCookie})">
+            <summary>
+            Creates an <see cref="T:JetBrains.DocumentModel.IDocument"/> from the given text.
+            In tests, that would be a simple implementation (<see cref="M:JetBrains.DocumentModel.IInMemoryDocumentFactory.CreateSimpleDocumentFromText(System.String,System.String,JetBrains.DocumentModel.Transactions.IDocumentTransactionManager)"/>). In VS, that would be a VS text buffer.
+            </summary>
+            <param name="lifetime">Document lifetime.</param>
+            <param name="text">Document text.</param>
+            <param name="moniker">Document moniker that uniquely identifies this document.</param>
+            <param name="ensureWritableHandler">Queries whether the document is allowed to be written.</param>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.Backend.IDE.VsEditorManagerBackend.TryFindTextControlForFile(JetBrains.ProjectModel.IProjectModelElement)">
+            <summary>
+            Looks if there's a text control for the given file currently open.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.IDE.VsEnsureWritableHandler">
+            <summary>
+            Attaches to SolutionBase events related to handling making the files writable.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.ProjectDocuments.Transactions.IVsFilesAndFoldersEditor">
+            <summary>
+            Implementation of files and folders operation is Visual Studio for a certain type of project
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.Backend.ProjectModel.FileTypes.StandardEditorsToFileTypeConverter.EditorsMap">
+            <summary>
+            Editor to file type map. Extension is not required. Entities with a given extension can override entities without an extension.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.ProjectModel.PropertiesExtender.StringEditorWindow">
+            <summary>
+            Interaction logic for StringEditorWindow.xaml
+            </summary>
+            <summary>
+            StringEditorWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.Backend.ProjectModel.PropertiesExtender.StringEditorWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.IProjectModelDescriptorBuilderFromDisk">
+            <summary>
+            Loads project descriptors from disk using Rider engine upon request
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.IProjectModelDescriptorBuilderFromDisk.SolutionLoaderArgs">
+            <summary>
+            Currently used solution loader args
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.IProjectModelDescriptorBuilderFromDisk.RequestBeingProcessed">
+            <summary>
+            Currently processed request if any.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.IProjectModelDescriptorBuilderFromDisk.RequestBuildDescriptorsAsync(JetBrains.Lifetimes.Lifetime,JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.BuildDescriptorsRequest)">
+            <summary>
+            Requests building descriptors for project as specified in <see cref="!:request"/>
+            </summary>
+            <param name="requestLifetime">Lifetime for which the <see cref="!:request"/> is valid</param>
+            <param name="request"></param>
+            <returns>Async result</returns>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.BuildDescriptorsRequest.SolutionConfigurationAndPlatform">
+            <summary>
+            Solution configuration and platform. Necessary to load solution in necessary configuration.
+            TODO: [stepanov] where to take project active configuration from?
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.BuildDescriptorsRequest.ProjectFilter">
+            <summary>
+            Which projects to include into output. Null means all.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.BuildDescriptorsRequest.UnloadedProjectsGuids">
+            <summary>
+            Guids of unloaded projects
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.BuildDescriptorsRequest.LogFilePath">
+            <summary>
+            Optional path to the file to write solution loader logs to. Msbuild logs will be created next to it.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.BuildDescriptorResult">
+            <summary>
+            Built descriptors with their references and errors
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.BuildDescriptorResult.ProjectDescriptors">
+            <summary>
+            Create project descriptors with their references sorted so Solution folder precedes projects that are contained in it
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.Backend.ProjectModel.RdProjectModel.DescriptorBuilder.BuildDescriptorResult.Errors">
+            <summary>
+            Errors happened while loading
+            </summary>
+        </member>
+    </members>
+</doc>

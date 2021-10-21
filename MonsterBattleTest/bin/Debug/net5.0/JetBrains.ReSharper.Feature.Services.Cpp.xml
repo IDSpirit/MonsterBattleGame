@@ -1,0 +1,1009 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Feature.Services.Cpp</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.ContextHighlighter.CppMatchingFormatContextHighlighter">
+            <summary>
+            This class matches corresponding "... %_ ..." and arguments of printf()
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ContextHighlighter.CppMatchingFormatContextHighlighter.CollectHighlightings(JetBrains.ReSharper.Psi.DataContext.IPsiDocumentRangeView,JetBrains.ReSharper.Daemon.CaretDependentFeatures.HighlightingsConsumer)">
+            <summary>
+            Entry point of the class: collects highlighting of corresponding format codes and arguments of printf()
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ContextHighlighter.CppMatchingFormatContextHighlighter.FindPrintfExpression(JetBrains.ReSharper.Psi.Cpp.Tree.ICppExpressionNode,JetBrains.ReSharper.Psi.Cpp.Services.CppFormatOverviewBase@,System.Int32@)">
+            <summary>
+            finds the enveloping printf (if any) and tells the index of selected argument (that may be a buffer, a format, or a data to print - we don't check it yet)
+            </summary>
+            <returns>true if a highlightable printf() is found, false otherwise</returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ControlFlow.CppControlFlowElementBuilder.IsNoReturnNode(JetBrains.ReSharper.Psi.Cpp.Tree.ICppExpressionNode)">
+            Must also return true on other expression that mark unreachable code, e.g. '__assume(false)'. 
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppOptionsPage">
+            <summary>
+            Root options page for the C++ language options.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy">
+             <summary>
+            	<para>
+            		<para>ClangTidy Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                           pXqD##80BM        
+                           pX--.'''BM        
+                           pX--.'''BM        
+                           pX--.'''BM        
+                           pX--.'''BM        
+                          ^pX--.'''BM/       
+                         ?wT_--.'''^iWV      
+                         4w``--.''''_W$      
+                         4wpXqD##80BMW$      
+                       ,Sp+  `````` .BX      
+                    '*apT`  ```````  BB      
+               "=LlP4|^`  ``.'````` -Bq      
+               ek=_.    ```+{`````` *Bv      
+               \4_      -=aP'````` _#8`      
+                fh*` `^fOR{`     `+Dq'       
+                 ~5wbpXOqRRRD###88qc`        
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:PopetilThemedIconsThemedIcons+ClangTidy}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(PopetilThemedIconsThemedIcons.ClangTidy))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = PopetilThemedIconsThemedIcons.ClangTidy.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;PopetilThemedIconsThemedIcons.ClangTidy&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy.Load_Color">
+            <summary>Loads the image for Themed Icon ClangTidy theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy.Load_Gray">
+            <summary>Loads the image for Themed Icon ClangTidy theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy.Load_GrayDark">
+            <summary>Loads the image for Themed Icon ClangTidy theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.ClangTidy.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon ClangTidy.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance">
+             <summary>
+            	<para>
+            		<para>Performance Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                  `_~*?T1Cf{)
+                              -"\{C7L+=^^=;aa
+                           ';slc;,__:,"~^=;P5
+                   ``-'''^Jl+,''__:,"~^==;(PL
+               `=c|?*\LLcL"'''__:~;^^==;;LPP`
+              `zT'``':^===''__:+ePPPY!;+*Sh" 
+               Tz``=llllv^__:,"}PPPPP?*LE4=  
+               _vT'.+lFc,_:,"~^;zIj{J\?P4=   
+                '{C_'___:,"~^==;;+*\L|6V~    
+                cYL'__:,"~^==;;+*\LTSGv`     
+               '=T5|=,"~^==;;+*\L?YhGv       
+              `^,`:7E1+==;;+*\L725r*b7       
+              =='-` 'zaYc+*\T}Y1Ya:\O+       
+             '+^_'````:vVEj64j!::'_A4-       
+             =\~::__:,""~c='_LEHe2pP.        
+             *r+;^^:_-`         -_-          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:PopetilThemedIconsThemedIcons+Performance}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(PopetilThemedIconsThemedIcons.Performance))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = PopetilThemedIconsThemedIcons.Performance.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;PopetilThemedIconsThemedIcons.Performance&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance.Load_Color">
+            <summary>Loads the image for Themed Icon Performance theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance.Load_Gray">
+            <summary>Loads the image for Themed Icon Performance theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance.Load_GrayDark">
+            <summary>Loads the image for Themed Icon Performance theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Performance.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon Performance.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal">
+             <summary>
+            	<para>
+            		<para>Unreal Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                          .:;e*`             
+                         :_I8-               
+                         `:_6u`              
+                  `*JVpX[?~^_rDTr[hpk}r.     
+                `rDE;:.-~Th888847~-.:;2DT`   
+                }D*```    ```````     `;De   
+               ^mI```-c2j|:`````` ;*\ ``7m!  
+              `6w:.. Ykkkkj .. :"--:: ..-Kb. 
+              cb*---`-rsz?:`-- n3) .-----;bi 
+             `XP:-----````----````.-------j4.
+             !Xc:::::::~rJ2oooo2s?;:::::::\Xr
+             {E;,,,,,\3E7~:-``'-^)kj*_,,,,"Ey
+             /a7^^^=[j=.          `;2I\^^^Lac
+              ~v55tT;`               ;){55s; 
+                                             
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:WexuporThemedIconsThemedIcons+Unreal}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(WexuporThemedIconsThemedIcons.Unreal))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = WexuporThemedIconsThemedIcons.Unreal.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;WexuporThemedIconsThemedIcons.Unreal&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal.Load_Color">
+            <summary>Loads the image for Themed Icon Unreal theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal.Load_Gray">
+            <summary>Loads the image for Themed Icon Unreal theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal.Load_GrayDark">
+            <summary>Loads the image for Themed Icon Unreal theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Options.CppThemedIcons.Unreal.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon Unreal.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.Snapshot.CppProjectSnapshot">
+             <summary>
+             Saves and loads all C++ source and headers files living in a project and their compilation flags.
+            
+             The saved snapshot has the following structure:
+               `snapshot/src` contains all project files and headers/sources under the same directory root.
+               `snapshot/misc` contains all headers and sources outside the project.
+               `snapshot/rscpp-snapshot.yaml` stores all compilation flags.
+               `snapshot/rscpp-snapshot.sln` is an empty dummy solution file to trick Rider into trying to open it.
+               `snapshot/paths.yaml` stores information about original paths for files when taking the snapshot.
+            
+             Loading the snapshot results in getting tweaked compilation flags for files. In particular, the include
+             paths are updated according to the path mapping recorded in the snapshot.
+            
+             The folder with snapshot can be opened in Rider, it will remap the files accordingly and use dumped compilation
+             flags for files in the project.
+            
+             See CppSnapshotProjectModelHost for code dealing with loading the snasphots and mocking the project model.
+             </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ModuleNamesProvider">
+            <summary>
+            Provider is aware about all UE4 modules and their directories.
+            Works even without new project model (CppUE4ProjectPropertiesProvider).
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ModuleNamesProvider.GetUE4ModuleDirectoryFor(System.String)">
+            <summary>
+            Can return module directory for module which was returned from GetUE4ModuleNameFor
+            </summary>
+            <param name="moduleName">Case sensitive. Should be the same as returned by GetUE4ModuleNameFor</param>
+            <returns>Parent directory for module. Throws exception if this module is unknown</returns>
+            <remarks>
+            Several modules can be mapped to the same directory.
+            That means that for:
+            path=GetUE4ModuleDirectoryFor(module1)
+            module2=GetUE4ModuleNameFor(path)
+            module1 can be not equal to module2
+            </remarks>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ParsedProjectModel">
+            <summary>
+            Represents parsed UE4 project model in intermediate format. Should not be stored anywhere! Instead transform it into preferable format.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ParsedProjectModel.ParsedModuleInfo">
+            <summary>
+            Processed module info. Not optimized for callers
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ParsedProjectModel.ParsedModuleInfo.AllDependencyModules">
+            <summary>
+            Includes both public and private dependency modules
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ParsedProjectModel.ModuleInfoCache">
+            <summary>
+            Intermediate cache of processed (referenced) modules which should avoid repeated processing commonly referenced modules
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ParsedProjectModel.Parse(JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ProjectModel)">
+            <summary>
+            Parses passed project model and created object based on it
+            </summary>
+            <param name="rawModel">Model to parse</param>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.BinaryType.Executable">
+            <summary>
+            An executable
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.BinaryType.DynamicLinkLibrary">
+            <summary>
+            A dynamic library (.dll, .dylib, or .so)
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.BinaryType.StaticLibrary">
+            <summary>
+            A static library (.lib or .a)
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PluginType.Engine">
+            <summary>
+            Plugin is built-in to the engine
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PluginType.Enterprise">
+            <summary>
+            Enterprise plugin
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PluginType.Project">
+            <summary>
+            Project-specific plugin, stored within a game project directory
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PluginType.External">
+            <summary>
+            Plugin found in an external directory (found in an AdditionalPluginDirectory listed in the project file, or referenced on the command line)
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PluginType.Mod">
+            <summary>
+            Project-specific mod plugin
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PchUsage.Default">
+            <summary>
+            Default: Engine modules use shared PCHs, game modules do not
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PchUsage.NoPCHs">
+            <summary>
+            Never use any PCHs.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PchUsage.NoSharedPCHs">
+            <summary>
+            Never use shared PCHs.  Always generate a unique PCH for this module if appropriate
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PchUsage.UseSharedPCHs">
+            <summary>
+            Shared PCHs are OK!
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.PchUsage.UseExplicitOrSharedPCHs">
+            <summary>
+            Shared PCHs may be used if an explicit private PCH is not set through PrivatePCHHeaderFile. In either case, none of the source files manually include a module PCH, and should include a matching header instead.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.RuntimeDependencyType.UFS">
+            <summary>
+            Only accessed through Unreal filesystem functions; may be included in a PAK file.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.RuntimeDependencyType.NonUFS">
+            <summary>
+            Must be kept as part of the loose filesystem.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.RuntimeDependencyType.DebugNonUFS">
+            <summary>
+            Debug file which must be kept as part of the loose filesystem.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.RuntimeDependencyType.SystemNonUFS">
+            <summary>
+            System file which must be kept as part of the loose filesystem. System files are not subject to being automatic remapping or renaming by the platform layer.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetType.Game">
+            <summary>
+            Cooked monolithic game executable (GameName.exe).  Also used for a game-agnostic engine executable (UE4Game.exe or RocketGame.exe)
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetType.Editor">
+            <summary>
+            Uncooked modular editor executable and DLLs (UE4Editor.exe, UE4Editor*.dll, GameName*.dll)
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetType.Client">
+            <summary>
+            Cooked monolithic game client executable (GameNameClient.exe, but no server code)
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetType.Server">
+            <summary>
+            Cooked monolithic game server executable (GameNameServer.exe, but no client code)
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetType.Program">
+            <summary>
+            Program (standalone program, e.g. ShaderCompileWorker.exe, can be modular or monolithic depending on the program)
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Unknown">
+            <summary>
+            Unknown target platform
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Win32">
+            <summary>
+            32-bit Windows
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Win64">
+            <summary>
+            64-bit Windows
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Mac">
+            <summary>
+            Mac
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.XboxOne">
+            <summary>
+            XboxOne
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.PS4">
+            <summary>
+            Playstation 4
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.IOS">
+            <summary>
+            iOS
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Android">
+            <summary>
+            Android
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.HTML5">
+            <summary>
+            HTML5
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Linux">
+            <summary>
+            Linux
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.AllDesktop">
+            <summary>
+            All desktop platforms
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.TVOS">
+            <summary>
+            TVOS
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Switch">
+            <summary>
+            Nintendo Switch
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Quail">
+            <summary>
+            NDA'd platform Quail
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform.Lumin">
+            <summary>
+            Confidential platform
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetConfiguration">
+            <summary>
+            The type of configuration a target can be built for
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetConfiguration.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetConfiguration.Debug">
+            <summary>
+            Debug configuration
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetConfiguration.DebugGame">
+            <summary>
+            DebugGame configuration; equivalent to development, but with optimization disabled for game modules
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetConfiguration.Development">
+            <summary>
+            Development configuration
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetConfiguration.Shipping">
+            <summary>
+            Shipping configuration
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetConfiguration.Test">
+            <summary>
+            Test configuration
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ProjectModelGenerator.#ctor(JetBrains.Util.FileSystemPath)">
+            <summary>
+            Allows to generate project model for game and engine based on provided uproject file
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ProjectModelGenerator.#ctor(JetBrains.ReSharper.Psi.Cpp.UE4.ICppUE4SolutionDetector)">
+            <summary>
+            Allows to generate project model for pure engine solution
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ProjectModelGenerator.GetProjectModel(JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetType,JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetPlatform,JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4TargetConfiguration)">
+            <remarks>Should be explicitly generated before calling this method. See GenerateProjectModel method</remarks>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ProjectPropertiesProvider.CppUE4ModuleProperties">
+            <summary>
+            Processed module info which can be exposed outside of this class
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.ProjectModel.UE4.CppUE4ProjectPropertiesProvider.RegenerateUE4Properties">
+            <summary>
+            TO BE USED ONLY IN DEBUG ACTIONS
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Refactorings.CppUE4RpcRefactoringHelper.GetFunctionType(System.String)">
+            <remarks><c>FindGeneratedFunctions</c> should be called prior calling this function</remarks>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.Refactorings.CppUE4RpcRefactoringHelper.FindGeneratedFunctions(JetBrains.ReSharper.Psi.IDeclaredElement)">
+            <summary>Searches for RPC generated functions and memorizes their names/types for further checking</summary>
+            <remarks>
+            Expects <c>CppLinkageEntityDeclaredElement</c> as input.
+            SLOW! Queries LinkageCache - so don't use in performance critical code or in often-called methods like IsAvailable.
+            </remarks>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.SelectEmbracingConstruct.CppSelectEmbracingConstructUtil.BuildNodeSelection(JetBrains.ReSharper.Psi.Tree.IFile,JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Feature.Services.SelectEmbracingConstruct.ExtendToTheWholeLinePolicy)">
+            <summary>
+            Builds embracing selection construct for the individual node of PSI-tree
+            </summary>
+            <param name="fileNode">target file to peek into</param>
+            <param name="node">target node to build embracing selection construct around</param>
+            <param name="ewpl">extend-the-whole-line policy value</param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.SelectEmbracingConstruct.CppSelectEmbracingConstructUtil.ExtendRangeSelection(JetBrains.ReSharper.Psi.Tree.IFile,JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.Tree.ITreeNode)">
+            <summary>
+            Extends embracing selection construct for the given PSI-tree's nodes 'range'
+            </summary>
+            <param name="fileNode">target file to peek into</param>
+            <param name="first">head node of the range</param>
+            <param name="last">tail node of the range</param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.SelectEmbracingConstruct.CppSelectEmbracingConstructUtil.ExtendPPRangeSelection(JetBrains.ReSharper.Psi.Tree.IFile,JetBrains.ReSharper.Psi.Tree.ITreeNode,JetBrains.ReSharper.Psi.Tree.ITreeNode)">
+            <summary>
+            Extends embracing PP selection construct for the given PSI-tree's nodes 'range'
+            </summary>
+            <param name="fileNode">target file to peek into</param>
+            <param name="first">head node of the range</param>
+            <param name="last">tail node of the range</param>
+            <returns></returns>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_None">
+            No compression																
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_ZLIB">
+            Compress with ZLIB - DEPRECATED, USE FNAME									
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_GZIP">
+            Compress with GZIP - DEPRECATED, USE FNAME									
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_Custom">
+            Compress with user defined callbacks - DEPRECATED, USE FNAME                
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_DeprecatedFormatFlagsMask">
+            Joint of the previous ones to determine if old flags are being used			
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_NoFlags">
+            No flags specified /														
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_BiasMemory">
+            Prefer compression that compresses smaller (ONLY VALID FOR COMPRESSION)		
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_BiasSpeed">
+            Prefer compression that compresses faster (ONLY VALID FOR COMPRESSION)		
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_SourceIsPadded">
+            Is the source buffer padded out	(ONLY VALID FOR UNCOMPRESS)					
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UECompressionFlags.COMPRESS_OptionsFlagsMask">
+            Set of flags that are options are still allowed								
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UELegacyFileVersions">
+             The package file version number when this package was saved.
+            
+             Lower 16 bits stores the UE3 engine version
+             Upper 16 bits stores the UE4/licensee version
+             For newer packages this is -7
+            		-2 indicates presence of enum-based custom versions
+            		-3 indicates guid-based custom versions
+            		-4 indicates removal of the UE3 version. Packages saved with this ID cannot be loaded in older engine versions
+            		-5 indicates the replacement of writing out the "UE3 version" so older versions of engine can gracefully fail to open newer packages
+            		-6 indicates optimizations to how custom versions are being serialized
+            		-7 indicates the texture allocation info has been removed from the summary
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_Public">
+            No flags, used to avoid a cast
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_Standalone">
+            Object is visible outside its package.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_MarkAsNative">
+            Keep object around for editing even if unreferenced.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_Transactional">
+            Object (UField) will be marked as native on construction (DO NOT USE THIS FLAG in HasAnyFlags() etc)
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_ClassDefaultObject">
+            Object is transactional.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_ArchetypeObject">
+            This object is its class's default object
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_Transient">
+            This object is a template for another object - treat like a class default object
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_MarkAsRootSet">
+            Don't save object.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_TagGarbageTemp">
+            Object will be marked as root set on construction and not be garbage collected, even if unreferenced (DO NOT USE THIS FLAG in HasAnyFlags() etc)
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_NeedInitialization">
+            This is a temp user flag for various utilities that need to use the garbage collector. The garbage collector itself does not interpret it.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_NeedLoad">
+            This object has not completed its initialization process. Cleared when ~FObjectInitializer completes
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_KeepForCooker">
+            During load, indicates object needs loading.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_NeedPostLoad">
+            Keep this object during garbage collection because it's still being used by the cooker
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_NeedPostLoadSubobjects">
+            Object needs to be postloaded.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_NewerVersionExists">
+            During load, indicates that the object still needs to instance subobjects and fixup serialized component references
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_BeginDestroyed">
+            Object has been consigned to oblivion due to its owner package being reloaded, and a newer version currently exists
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_FinishDestroyed">
+            BeginDestroy has been called on the object.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_BeingRegenerated">
+            FinishDestroy has been called on the object.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_DefaultSubObject">
+            Flagged on UObjects that are used to create UClasses (e.g. Blueprints) while they are regenerating their UClass on load (See FLinkerLoad::CreateExport())
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_WasLoaded">
+            Flagged on subobjects that are defaults
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_TextExportTransient">
+            Flagged on UObjects that were loaded
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_LoadCompleted">
+            Do not export object to text form (e.g. copy/paste). Generally used for sub-objects that can be regenerated from data in their parent object.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_InheritableComponentTemplate">
+            Object has been completely serialized by linkerload at least once. DO NOT USE THIS FLAG, It should be replaced with RF_WasLoaded.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_DuplicateTransient">
+            Archetype of the object can be in its super class
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_StrongRefOnFrame">
+            Object should not be included in any type of duplication (copy/paste, binary duplication, etc.)
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_NonPIEDuplicateTransient">
+            References to this object from persistent function frame are handled as strong ones.
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_Dynamic">
+            Object should not be included for duplication unless it's being duplicated for a PIE session
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEObjectFlags.RF_WillBeLoaded">
+            Field Only. Dynamic field - doesn't get constructed during static initialization, can be constructed multiple times
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_NewlyCreated" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_ClientOptional" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_ServerSideOnly" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_CompiledIn" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_ForDiffing" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_EditorOnly" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_Developer" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_ContainsMapData" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_Need" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_Compiling" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_ContainsMap" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_RequiresLocalizationGather" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_DisallowLazyLoading" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_PlayInEditor" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_ContainsScript" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_DisallowExport" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_ReloadingForCooker" -->
+        <!-- Badly formed XML comment ignored for member "F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Properties.UEPackageFlags.PKG_FilterEditorOnly" -->
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UECompressedChunk.UncompressedOffset">
+            Original offset in uncompressed file. 
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UECompressedChunk.UncompressedSize">
+            Uncompressed size in bytes. 
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UECompressedChunk.CompressedOffset">
+            Offset in compressed file. 
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UECompressedChunk.CompressedSize">
+            Compressed size in bytes. 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEEngineVersion.Major">
+            Major version number. 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEEngineVersion.Minor">
+            Minor version number. 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEEngineVersion.Patch">
+            Patch version number. 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEEngineVersion.Changelist">
+            Changelist number. This is used to arbitrate when Major/Minor/Patch version numbers match. Use GetChangelist() instead of using this member directly. 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEEngineVersion.Branch">
+            Branch name. 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEGenerationInfo.ExportCount">
+            Number of exports in the linker's ExportMap for this generation.
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEGenerationInfo.NameCount">
+            Number of names in the linker's NameMap for this generation.
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UELinker.NameMap">
+            Names used by objects contained within this package 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UELinker.ImportMap">
+            The list of FObjectImports found in the package 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UELinker.ExportMap">
+            The list of FObjectExports found in the package 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UELinker.DependsMap">
+            List of dependency lists for each export 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UELinker.ThumbnailsMap">
+            List of Searchable Names, by object containing them. Not in MultiMap to allow sorting, and sizes are usually small enough where TArray makes sense 
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEObjectExport.ClassIndex">
+            Location of the resource for this export's class (if non-zero).  A value of zero
+            indicates that this export represents a UClass object; there is no resource for
+            this export's class object
+            Serialized
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEObjectExport.SuperIndex">
+            Location of the resource for this export's SuperField (parent).  Only valid if
+            this export represents a UStruct object. A value of zero indicates that the object
+            represented by this export isn't a UStruct-derived object.
+            Serialized
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEObjectExport.SerialSize">
+            The number of bytes to serialize when saving/loading this export's UObject.
+            Serialized
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEObjectExport.SerialOffset">
+            The location (into the FLinker's underlying file reader archive) of the beginning of the
+            data for this export's UObject.  Used for verification only.
+            Serialized
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEObjectImport.ClassPackage">
+            The name of the package that contains the class of the UObject represented by this resource.
+            Serialized
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEObjectImport.ClassName">
+            The name of the class for the UObject represented by this resource.
+            Serialized
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEObjectResource.ObjectName">
+            The name of the UObject represented by this resource.
+            Serialized
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEObjectResource.OuterIndex">
+            Location of the resource for this resource's Outer.  Values of 0 indicate that this resource
+            represents a top-level UPackage object (the linker's LinkerRoot).
+            Serialized
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.Tag">
+            Magic tag compared against PACKAGE_FILE_TAG to ensure that package is an Unreal package.
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.TotalHeaderSize">
+            Total size of all information that needs to be read in to create a FLinkerLoad. This includes
+            the package file summary, name table and import and export maps.
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.PackageFlags">
+            The flags for the package
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.FolderName">
+            The Generic Browser folder name that this package lives in
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.NameCount">
+            Number of names used in this package
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.NameOffset">
+            Location into the file on disk for the name data
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.ExportCount">
+            Number of exports contained in this package
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.ExportOffset">
+            Location into the file on disk for the ExportMap data
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.ImportCount">
+            Number of imports contained in this package
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.ImportOffset">
+            Location into the file on disk for the ImportMap data
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.DependsOffset">
+            Location into the file on disk for the DependsMap data
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.ThumbnailTableOffset">
+            Thumbnail table offset
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.Guid">
+            Current id for this package
+        </member>
+        <member name="P:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.UEPackageFileSummary.BulkDataStartOffset">
+            Offset to the location in the file where the bulkdata starts 
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.Reader.Util.StringHash.ToUpper(System.Byte)">
+            Only converts ASCII characters, same as CRT to[w]upper() with standard C locale
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset">
+             <summary>
+            	<para>
+            		<para>Uasset Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                 -\T}oooo                    
+               `Jj*.`..ee                    
+               |k;-  --kkkkkkkkkkkkkkkk      
+               KK--  --KK------------KK      
+               XX::  ::XX::::::::::::XX      
+               99::  ::99::::::::::::96;Ytt  
+               bb,,  ,,bb,,,,,,,,,,,"kn7^II  
+               qq__  __qq_________~c3J~--22  
+               RR"" =jXOO"""""""~|2s~----oo  
+               ##~~T)=;~~~~~~~;T5};::::::ee  
+               EDr~~~~~~~~~~;Jy{;::_Le:::VV  
+               :wD}?!;;;;;!lkC!::"cVEE:::EE  
+                 ;yp88888AXn!,,,"rcccc,,,hh  
+                       *Z2=______________66  
+                       99999999999999999999  
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:BeqelibThemedIconsThemedIcons+Uasset}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(BeqelibThemedIconsThemedIcons.Uasset))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = BeqelibThemedIconsThemedIcons.Uasset.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;BeqelibThemedIconsThemedIcons.Uasset&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset.Load_Color">
+            <summary>Loads the image for Themed Icon Uasset theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset.Load_Gray">
+            <summary>Loads the image for Themed Icon Uasset theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset.Load_GrayDark">
+            <summary>Loads the image for Themed Icon Uasset theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Uasset.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon Uasset.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont">
+             <summary>
+            	<para>
+            		<para>Ufont Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                     `:;*TJ2222VXX222222t    
+                   ~F6[r;:-.````  ```"6E-    
+                 ,Sk!`.~rLJllv*.     2w:     
+                ;b[.`*wC=^;w6=``r:``"bt      
+               `b6.``b4  :6w,`:kd-``\d)      
+               :Rf```7R;`9b,`-XRR```rR*      
+                G6..^5m72#;..e###-..r#*      
+                JDsoDv.rDs--!oooo:--=Dv      
+                `bDJ. ^8P:-------:--~8e      
+                     -DR":;D888887:::d8.:/   
+                  ^3aDp;:L8W!  :WX:::TWWDWL  
+                !HWtcL"_ri5MBc  6B!___~~*BD  
+               D$6L******e$b"   ~$K~*FXWWC:  
+               UUUUUUUDDDp!      U$$A[=:     
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:BeqelibThemedIconsThemedIcons+Ufont}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(BeqelibThemedIconsThemedIcons.Ufont))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = BeqelibThemedIconsThemedIcons.Ufont.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;BeqelibThemedIconsThemedIcons.Ufont&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont.Load_Color">
+            <summary>Loads the image for Themed Icon Ufont theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont.Load_Gray">
+            <summary>Loads the image for Themed Icon Ufont theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont.Load_GrayDark">
+            <summary>Loads the image for Themed Icon Ufont theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Ufont.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon Ufont.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap">
+             <summary>
+            	<para>
+            		<para>Umap Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                               T##F          
+                              [#3z#o`        
+                            `eD};;TDh'       
+                           -6D7;;~;cDp:      
+                          :dDc!!!;:!r#D^     
+                         ^DDr!!!!!.~!*O8!    
+                  `"!*LLTkXc======:`!=+bW)   
+                `rsTr+!!\*|ss?====; ,==\40r  
+               -zs!~~-``-~~;J1T++++` !++?$8  
+               ?3!"""""""""";3n****:.~*r6$f  
+               7y~::::::::::"ye****c72w$#!   
+               :E[:--------:sPDQQQQDDSr:     
+                -yk)"-``-_?VE_               
+                  :)2ZqqZ2T_                 
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:BeqelibThemedIconsThemedIcons+Umap}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(BeqelibThemedIconsThemedIcons.Umap))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = BeqelibThemedIconsThemedIcons.Umap.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;BeqelibThemedIconsThemedIcons.Umap&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap.Load_Color">
+            <summary>Loads the image for Themed Icon Umap theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap.Load_Gray">
+            <summary>Loads the image for Themed Icon Umap theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap.Load_GrayDark">
+            <summary>Loads the image for Themed Icon Umap theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Feature.Services.Cpp.UEAsset.UnrealBinaryFileTypesThemedIcons.Umap.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon Umap.</summary>
+        </member>
+    </members>
+</doc>

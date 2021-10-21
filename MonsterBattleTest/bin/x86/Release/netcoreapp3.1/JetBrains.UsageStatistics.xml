@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.UsageStatistics</name>
+    </assembly>
+    <members>
+        <member name="M:JetBrains.UsageStatistics.ActivityTracking.StopSession">
+            <summary>
+            Stop session and return collected result for frontend.
+            </summary>
+            <param name="shouldFireFrontendSignal">We should fire signal only when frontend solution exists</param>
+            <returns></returns>
+        </member>
+        <member name="P:JetBrains.UsageStatistics.ActivityTrackingDefaultSettings.SubmitLogsInterval">
+            <summary>
+            First attempt to submit logs is with first dump (<see cref="P:JetBrains.UsageStatistics.ActivityTrackingDefaultSettings.DumpLogsInterval"/>). Next in <see cref="P:JetBrains.UsageStatistics.ActivityTrackingDefaultSettings.SubmitLogsInterval"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

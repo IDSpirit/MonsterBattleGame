@@ -1,0 +1,10 @@
+For multi-turn attacks:
+
+- Each move has two properties (multi_num, multi_tracker)
+- If a multiple-turn move is used, if the multi_tracker is two more than the multi_num, say that the move just started
+- Subtract one from multi_tracker
+
+- The user can pick any move in the next turn, but it should miss
+- If the multi_tracker is between two more and one more than the multi_num, say that they're in the air/underwater/in the middle of another move
+
+- If the multi_tracker is the same value as the multi_num, have the original multiple-turn move hit

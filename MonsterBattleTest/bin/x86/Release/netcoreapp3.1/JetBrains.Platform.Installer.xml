@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Installer</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Platform.Installer.Install.AllPackagesZipBuildTxt">
+            <summary>
+            BUILD.txt for uploading to https://www.jetbrains.com/intellij-repository/snapshots/ or
+            https://www.jetbrains.com/intellij-repository/releases/
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Install.AllPackagesZipPom">
+            <summary>
+            .pom for uploading all packages.zip to https://www.jetbrains.com/intellij-repository/snapshots/ or
+            https://www.jetbrains.com/intellij-repository/releases/
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Install.ChannelIdsToMakeInstallers">
+            <summary>
+            A list of channel ids to make separate installers for them.
+            See: <see cref="T:JetBrains.Application.BuildScript.Install.InstallerExePackedWithEmbeddedChannelId"/>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Install.ProductsToEmbedInInstallerForToolbox">
+            <summary>
+            When building a pack installer EXE with embedded packages for Toolbox, allows to list specific products to be embedded into the installer.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Install.ReSharper9PlusMsiTasks">
+            <summary>
+            ReSharper9Plus.msi was used to downgrade from R# 9+ (wave era) to R# 8.2- (msi era).
+            It allowed to uninstall new R# versions from the old msi-installer.
+            This scenario is not supported anymore. The code is kept for historical reasons.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Install.ProductsToEmbedInInstaller">
+            <summary>
+            When building a pack installer EXE with embedded packages, allows to list specific products to be embedded into the installer.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Install.SdkPackagesToPublish">
+            <summary>
+            In addition to product packages publish SDK packages to the gallery
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Install.InstallerExeTasks.PackProductWebInstallersAsync(JetBrains.Lifetimes.Lifetime,JetBrains.Application.BuildScript.PreCompile.ManagedProjectsStuffing.DevKit.BuildChainFlavor,JetBrains.Application.BuildScript.PreCompile.ManagedProjectsStuffing.DevKit.ProductsToDeploy,JetBrains.Application.Install.Launcher.CleanLauncherPostCompileArtifact[],JetBrains.Application.BuildScript.InputPackage[],JetBrains.Application.BuildScript.Compile.CodeSigning.IAuthenticodeSigningService,JetBrains.Util.ILogger,JetBrains.Application.Components.Optional{JetBrains.Application.Install.Installer.InstallerStartupOptions},JetBrains.Application.BuildScript.BuildVersionSuffix,JetBrains.Build.Running.IBuildTaskHost,JetBrains.Application.BuildScript.Helpers.BuildStaThreadHelper,JetBrains.Application.Components.Optional{JetBrains.Platform.Installer.Install.ProductsToEmbedInInstaller},JetBrains.Application.BuildScript.Install.DeployedFilesNamingScheme)">
+            <summary>
+            Produces web installers. Web installer is a packed single executable but without embeded packages.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Install.InstallerExeTasks.PackInstallerExeBootstrapper(JetBrains.Lifetimes.Lifetime,JetBrains.Application.BuildScript.PreCompile.ManagedProjectsStuffing.DevKit.BuildChainFlavor,JetBrains.Application.BuildScript.PreCompile.ManagedProjectsStuffing.DevKit.ProductsToDeploy,JetBrains.Application.BuildScript.InputPackage[],JetBrains.Util.ILogger,JetBrains.Application.Install.Launcher.CleanLauncherPostCompileArtifact[],JetBrains.Application.Components.Optional{JetBrains.Platform.Installer.Install.ProductsToEmbedInInstaller},JetBrains.Application.BuildScript.Compile.CodeSigning.IAuthenticodeSigningService,JetBrains.Application.Components.Optional{JetBrains.Application.Install.Installer.InstallerStartupOptions},JetBrains.Application.BuildScript.BuildVersionSuffix,JetBrains.Application.BuildScript.Install.DeployedFilesNamingScheme,JetBrains.Build.Running.IBuildTaskHost,JetBrains.Application.BuildScript.Helpers.BuildStaThreadHelper)">
+            <summary>
+            Produces installer bootstrappers.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Install.InstallerExeTasks.ValidateDiagrammingPackageIsObfuscated(JetBrains.Util.ILogger,JetBrains.Application.BuildScript.InputPackage[],JetBrains.Application.BuildScript.PreCompile.ManagedProjectsStuffing.DevKit.BuildChainFlavor)">
+            Due to a license agreement with yFiles GmbH we MUST obfuscate the usage of yFiles public API
+            including control flow obfuscation. Do not remove this check.
+            It's written this way to minimize dependencies from other code
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Install.InstallerExeTasks.Other.ValidatePackagesNuget30Compatible(System.Runtime.Versioning.FrameworkName,System.Collections.Generic.ICollection{JetBrains.Application.BuildScript.InputPackage},JetBrains.Util.ILogger)">
+            <summary>
+            Validate that packages are 
+            * NuGet 3.0 compatible and have valid structure
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Models.Installable.InstallerProductGroup.Installed">
+            <summary>
+            Product from the gallery presented in the current hive.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Models.Installable.InstallerProductGroup.Available">
+            <summary>
+            Product from the gallery not presented in the current hive.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Models.Installable.InstallerProductGroup.Featured">
+            <summary>
+            Just featured products (not for install).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Models.Installable.InstallerProductGroup.RemoveOnly">
+            <summary>
+            Presented in the current hive but not found in the gallery. Cannot be installed/updated, remove only.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Models.InstallerViewModel.PopulateOptionsWithUserSelection(JetBrains.Application.Install.Installer.InstallerStartupOptions,System.Boolean)">
+            <summary>
+            <see cref="M:JetBrains.Platform.Installer.Utils.OptionsUtil.PopulateWithInstalledVsInstances(System.String[],JetBrains.Platform.Installer.Services.VisualStudioHostDiscovery)"/>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Services.InstalledProducts">
+            <summary>
+            A snapshot of installed products at the moment when discovery was executed.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.Exists">
+            <summary>
+            Used to mark supported VS versions that don't exist on PC, but should be shown in the installer UI.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.IsSupported">
+            <summary>
+            The supported (whitelisted) VS version. When false, used to show unsupported VSs in the GUI.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.InstallDir">
+            <summary>
+            InstallDir of VS, which is the directory with <c>devenv.exe</c>, <c>$(InstallRoot)/Common7/IDE</c>. <see cref="F:JetBrains.Util.FileSystemPath.Empty"/> if does not exist.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.ShortName">
+            <summary>
+            Short name (e.g. VS2010)
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.FullName">
+            <summary>
+            Official Visual Studio version name (e.g. Visual Studio 2010)
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.Nickname">
+            <summary>
+            VS15+ Instance nickname given at the installation.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.IsIncomplete">
+            <summary>
+            Applicable to VS15+. True when this instance InstanceState is not "Complete".
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.IsPreview">
+            <summary>
+            Applicable to VS15+. True when this instance is a "Preview".
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.DisplayVersion">
+            <summary>
+            VS15+ display version.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.Installer.Services.VisualStudioInstance.VsState">
+            <summary>
+            VS15+ instance state.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Services.VisualStudioHostDiscovery.AssertVsHostListConsistent">
+            <summary>
+            Installer might have less VSes in the list than Global Defines, but all VSes known to installer must be in the Global Defines list.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Services.IInstallResults.TaskName">
+            <summary>
+            The name of stage: Discovering products or Install.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Services.IInstallResults.IsSuccessful">
+            <summary>
+            The installation is not canceled and there are no errors.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Services.IInstallResults.IsCanceled">
+            <summary>
+            The installation is canceled by user.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Services.IInstallResults.Errors">
+            <summary>
+            Installation errors if any.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Resources.InstallerClipart">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Resources.InstallerClipart.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Resources.InstallerClipart.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Resources.InstallerClipart.InstallerExeIcon">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.Installer.Resources.InstallerClipart.InstallerSplash">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.Utils.PackagesUtil.AllHostPackagesMatchGallery(System.Collections.Generic.IEnumerable{JetBrains.Application.Install.Installable.InstallableHost},JetBrains.Application.Install.Installable.InstallablePackage[])">
+            <summary>
+            Check that all hosts have the current packages (match gallery)
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.Wpf.HiddenAdornerDecorator">
+            <summary>
+            Hack way to hide adorners
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.Installer.InstallerWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            InstallerWindow
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.Installer.InstallerWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

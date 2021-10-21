@@ -1,0 +1,6 @@
+MainPackage=C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattling\bin\x64\Release\MonsterBattling_1.0.8.0_x64.msix
+SymbolPackage=C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattling\obj\x64\Release\Symbols\MonsterBattling_1.0.8.0_x64.appxsym
+ResourcePack=C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattling\bin\x64\Release\MonsterBattling_1.0.8.0_scale-100.msix
+ResourcePack=C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattling\bin\x64\Release\MonsterBattling_1.0.8.0_scale-125.msix
+ResourcePack=C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattling\bin\x64\Release\MonsterBattling_1.0.8.0_scale-150.msix
+ResourcePack=C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattling\bin\x64\Release\MonsterBattling_1.0.8.0_scale-400.msix

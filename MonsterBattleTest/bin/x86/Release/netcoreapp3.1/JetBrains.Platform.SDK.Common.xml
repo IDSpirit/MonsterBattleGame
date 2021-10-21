@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.SDK.Common</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Platform.SDK.Common.BuildScript.ThemedIconsPacker">
+            <summary>
+            SDK publishes a task which can make a Themed Icon from a XAML or a PNG file. We do not use it in our solution anymore. This helper records the package identity to use.
+            </summary>
+        </member>
+    </members>
+</doc>

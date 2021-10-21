@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.UnitTesting.MSTest.Provider</name>
+    </assembly>
+    <members>
+        <member name="P:JetBrains.ReSharper.UnitTesting.MSTest.Provider.New.TestHost.TestHostMsTestRunner.TestHostLauncher.IsDebug">
+            <remarks>
+            Must return false, or VS 16.7.0 will start process without calling us
+            </remarks>
+        </member>
+    </members>
+</doc>

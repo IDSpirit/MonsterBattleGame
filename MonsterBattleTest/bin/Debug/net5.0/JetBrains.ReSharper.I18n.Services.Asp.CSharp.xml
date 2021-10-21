@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.I18n.Services.Asp.CSharp</name>
+    </assembly>
+    <members>
+        <member name="F:JetBrains.ReSharper.I18n.Services.Asp.CSharp.CustomReferences.NetCore.AspNetCoreResourceFileDataExtractor.ResourceDirName">
+            <summary>
+            TODO: Resource directory can be configured using the option ResourcesPath
+            https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-3.1#dataannotations-localization
+            </summary>
+        </member>
+    </members>
+</doc>

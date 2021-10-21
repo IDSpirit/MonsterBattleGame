@@ -1,0 +1,2048 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Features.SolBuilderDuo</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.GraphBuilders.IBuildDependencyProvider">
+            <summary>
+            Provider build dependencies between projects
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceCache">
+            <summary>
+            A list of <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash"/> and "ProjectBuildSignature" objects for storing during the build and between sessions.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceCache.GetAssemblySurfaceHash(JetBrains.Util.FileSystemPath,JetBrains.Application.Threading.Tasks.ITaskHost)">
+            <summary>
+            Looks up an existing hash by assembly path, if it's available and still valid, or computes a new one.
+            Does not throw if missing. The caller does not need to know if it were missing or not.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash">
+            <summary>
+            Holds a hash of the assembly's public API surface.
+            Whenever there is a breaking change in the surface, all of the projects referencing this assembly must be rebuilt.
+            The equality is not strict, it checks assembly name, version, and surface hash only (modification time is ignored).
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.OptionDumpSignature">
+            <summary>
+            Whether to dump the XML Signature file to disk. Debug option.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.#ctor(JetBrains.Util.FileSystemPath,JetBrains.Application.Threading.Tasks.ITaskHost)">
+            <summary>
+            Captures the signature from the file.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.#ctor">
+            <summary>
+            Default ctor, used for serialization.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.StrictEqualityComparer">
+            <summary>
+            Compares for equality using all the fields, which includes modification time.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.AssemblyName">
+            <summary>
+            The serialized form of the <see cref="T:System.Reflection.AssemblyName"/>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.FullPath">
+            <summary>
+            Full path to the assembly. This is the key.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.ModificationTime">
+            <summary>
+            Modification time of the a
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.PublicApiHash">
+            <summary>
+            The public API surface of the assembly, compacted with a hash.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.IsUpToDate">
+            <summary>
+            Checks if this signature is still up-to-date for its file (only timestamp is considered).
+            If not, you should create a new one with the ctor.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.ComputeHash_Stream(JetBrains.Util.FileSystemPath,JetBrains.Application.Threading.Tasks.ITaskHost)">
+            <summary>
+            New impl. Streams the XML Signature producer into the hashing stream consumer. Uses much less memory and has better perf.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.EqualsStrict(JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash,JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash)">
+            <summary>
+            Includes modification time also.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.GetHashCodeStrict(JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash)">
+            <summary>
+            Includes modification time also.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />.
+            </summary>
+            <returns>
+            true if the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />; otherwise, false.
+            </returns>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with the current <see cref="T:System.Object" />. </param>
+            <exception cref="T:System.NullReferenceException">The <paramref name="obj" /> parameter is null.</exception><filterpriority>2</filterpriority>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type. 
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object" />.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.Equals(JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+            true if the current object is equal to the <paramref name="obj" /> parameter; otherwise, false.
+            </returns>
+            <param name="obj">An object to compare with this object.</param>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceSerializerOnTheFly">
+            <summary>
+            Takes an assembly and serializes its public API surface into an XML Document.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceSerializerOnTheFly.Run(JetBrains.Metadata.Reader.API.IMetadataAssembly,System.IO.Stream)">
+            <summary>
+            Takes an assembly and serializes its public API surface into an XML Document.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceSerializerOnTheFly.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.GraphStateCommands.HandleBuildEventCommand.IsBuilding">
+            <summary>
+            True - when we Build or Rebuild. false when Clean.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.None">
+            <summary>
+            No information about previous build.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.HasRunningParent">
+            <summary>
+            One of project parents are being built now.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.Skipped">
+            <summary>
+            Project should be built because of file changes or heuristics.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.Running">
+            <summary>
+            Project is being built now.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.SuccessfulWithoutWarnings">
+            <summary>
+            Project was succesfully built without errors and warnings.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.SuccessfulWithWarnings">
+            <summary>
+            Project was built without errors but with warnings.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.Failed">
+            <summary>
+            Project building failed with errors.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.Cleaned">
+            <summary>
+            Project was cleaned.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.None">
+            <summary>
+            No information. Equals to Dirty. Should be built.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.White">
+            <summary>
+            Clean. Project doesn't have any changes and doesn't have dirty parent. Should not be built.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.Black">
+            <summary>
+            Dirty. Project has changes. Should be built.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.Gray">
+            <summary>
+            Project doesn't have any changes, but has at least one parent(it's not necessarily - parent is direct or not) should be built. Decision(to build or not to build) will be made after building parents.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.GrayToSkip">
+            <summary>
+            Project had state Gray before, but after building parents we decide to SKIP building because of heuristics.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.GrayToBuild">
+            <summary>
+            Project had state Gray before, but after building parents we decide to BUILD building because of heuristics.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.NeverBuild">
+            <summary>
+            Project had state Gray, but this project marked as "NeverBuild".
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.AlwaysBuild">
+            <summary>
+            Project had state Gray, but this project marked as "AlwaysBuild".
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.OnlyInderectReferencesChanged">
+            <summary>
+            Project was White but some of inderect references were changed.
+            Analyzing surface could affect only first-level dependencies.
+            This state could be used for executing
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.BuildIsDisabled">
+            <summary>
+            Build is disabled in current solution configuration+platform.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectForBuildingChooseResult.Projects">
+            <summary>
+            Projects could be built now. We could even built them in parallel. They don't reference each other.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectInBuildEvent.IsMajorProject">
+            <summary>
+            For similar situations it always True.
+            It would be False when we get event e.g. from referenced projects or if we build WPF project then msbuild generate fake projects.
+            We should receive errors from "minor" projects to provide them to user. But events from theese projects should not change state of "major" project.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.SolutionBuilderNextSettings.MsbuildVersion">
+            <summary>
+            Version of MSBuild to use when building.
+            <c>0</c> means "as the runtime version of the application initiating the build" (in case of Visual Studio, this is the same MSBuild VS itself uses for building).
+            <see cref="F:System.Int32.MaxValue"/> means use the highest version available on this machine.
+            Any other number: <see cref="M:JetBrains.Interop.WinApi.Macros.HIWORD(System.UInt32)"/> is the major version number, <see cref="M:JetBrains.Interop.WinApi.Macros.LOWORD(System.UInt32)"/> is the minor version number.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ISolutionDirtyState.SolutionChanged">
+            <summary>
+            If sln file was changed.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ISolutionDirtyState.ChangedProjects">
+            <summary>
+            List of projects, where project file has been changed. e.g. added files or changed reference array.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ISolutionDirtyState.DirtyProjects">
+            <summary>
+            Projects, which have changing in their inputs. e.g changing in file with code.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectState.IncludedBySelection">
+            <summary>
+            If user build selected project/projects, than some projects could be skipped for building.
+            If use build all, all projects have IncludedBySelection = true.
+            default == true
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Options.Toolsets.ToolsetOptionProviderBase.Current">
+            <summary>
+            Value should be inited(not null)
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Options.Toolsets.ToolsetOptionProviderBase.AllPossibleValues">
+            <summary>
+            Only 1 value with IsEditable == false
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Services.IncrementalRunner.IsAvailableMixin">
+            Extra availablility creterian that can disable this runner in other environments
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Services.IncrementalRunnerApplicabilityChecker.ApplicabilityState">
+            <summary>
+            the builder can work for whole current solution.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Services.TriggerSolutionBuildAfterOpen">
+            <summary>
+            Queue build after opening first solution if %RESHARPER_BUILD_SOLUTION_AFTER_OPEN% is true.
+            Used in ArtOfBuild for OpenInVs action
+            <see cref="T:JetBrains.Application.BuildScript.PreCompile.EntryOpenInVisualStudioTasks"/>
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons">
+             <summary>
+            	<para>
+            		<para>Autogenerated identifier classes and identifier objects to Themed Icons registered with <see cref="T:JetBrains.Application.Icons.IThemedIconManager"></see>.</para>
+            		<para>Identifier classes should be used in attributes, XAML, or generic parameters. Where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected, use the identifier object in the <c>Id</c> field of the identifier class.</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>This code was compile-time generated to support Themed Icons in the JetBrains application.</para>
+            	<para>It has two primary goals: load the icons of this assembly to be registered with <see cref="T:JetBrains.Application.Icons.IThemedIconManager"></see> so that they were WPF-accessible and theme-sensitive; and emit early-bound accessors for referencing icons in codebehind in a compile-time-validated manner.</para>
+            	<h1>XAML</h1>
+            	<para>For performance reasons, the icons are not individually exposed with application resources. There is a custom markup extension to bind an image source in markup.</para>
+            	<para>To use an icon from XAML, set an <see cref="T:System.Windows.Media.ImageSource"></see> property to the <see cref="T:System.CodeDom.CodeTypeReference"></see> markup extension, which takes an icon identifier class (nested in <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons"></see> class) as a parameter.</para>
+            	<para>Example:</para>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+Trinity}" /&gt;</code>
+            	<h1>Attributes</h1>
+            	<para>Sometimes you have to reference an icon from a type attriute when you're defining objects in code. Typical examples are Options pages and Tool Windows.</para>
+            	<para>To avoid the use of string IDs which are not validated very well, we've emitted identifier classes to be used with <c>typeof()</c> expression, one per each icon. Use the attribute overload which takes a <see cref="T:System.Type"></see> for an image, and choose your icon class from nested classes in the <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons"></see> class.</para>
+            	<para>Example:</para>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.Trinity))]</code>
+            	<h1>CodeBehind</h1>
+            	<para>In codebehind, we have two distinct tasks: (a) specify some icon in the APIs and (b) render icon images onscreen.</para>
+            	<para>On the APIs stage you should only manipulate icon identifier objects (of type <see cref="T:JetBrains.UI.Icons.IconId"></see>, statically defined in <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons"></see> in <c>Id</c> fields). Icon identifier classes (nested in <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons"></see>) should be turned into icon identifier objects as early as possible. Rendering is about getting an <see cref="T:System.Windows.Media.ImageSource"></see> to assign to WPF, or <see cref="T:System.Drawing.Bitmap"></see> to use with GDI+ / Windows Forms.</para>
+            	<para>You should turn an identifier object into a rendered image as late as possible. The identifier is static and lightweight and does not depend on the current theme, while the image is themed and has to be loaded or generated/rasterized. You need an <see cref="T:JetBrains.Application.Icons.IThemedIconManager"></see> instance to get the image out of an icon identifier object. Once you got the image, you should take care to change it with theme changes — either by using a live image property, or by listening to the theme change event. See <see cref="T:JetBrains.Application.Icons.IThemedIconManager"></see> and its extensions for the related facilities.</para>
+            	<para>Example:</para>
+            	<code>// Getting IconId identifier object to use with APIs
+            IconId iconid = SolBuilderDuoThemedIcons.Trinity.Id;</code>
+            	<code>// Getting IconId out of an Icon Identifier Class type
+            IconId iconid = new JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsId(typeof(SolBuilderDuoThemedIcons.Trinity));</code>
+            	<code>// Getting image for screen rendering by IconId
+            themediconmanager.Icons[icnoid]</code>
+            	<code>// Getting image for screen rendering by Icon Identifier Class
+            themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.Trinity&gt;()</code>
+            	<h1>Icons Origin</h1>
+            	<para>This code was generated by a pre-compile build task from a set of input files which are XAML files adhering to a certain convention, as convenient for exporting them from the Illustrator workspace, plus separate PNG files with raster icons. In the projects, these files are designated with <c>ThemedIconsXamlV3</c> and <c>ThemedIconPng</c> build actions and do not themselves get into the output assembly. All of such files are processed, vector images for different themes of the same icon are split and combined into the single list of icons in this assembly. This list is then written into the genearted XAML file (compiled into BAML within assembly), and serves as the source for this generated code.</para>
+            </remarks>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoBuild Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                         }}____}}            
+                   .     CC____CC     .      
+                   11lr="11----11"=rl11      
+                   uu_~!?71----17?!~_uu      
+                   coT=-..........'~|oT      
+             uuuuuuuujeor,``````:+ueoouuuuuuu
+             ee  888888R9S1!--!FS6R888888  ee
+             SS  DDDDDDDDDHUVVhdRDDDDDDDD  SS
+             kk``OO````OOOO````OOOO````OO``kk
+             UU``bb````bbbb````bbbb````bb``UU
+             44..XXXXXXXXXXXXXXXXXXXXXXXX..44
+             bb--kkkkkk````kkkk````kkkkkk--bb
+             AA--aaaaaa````aaaa````aaaaaa--AA
+             RR__oooooooooooooooooooooooo__RR
+             DD,,,,,,,,,,,,,,,,,,,,,,,,,,,,DD
+             88888888888888888888888888888888
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoBuild}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoBuild))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoBuild.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoBuild&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuild theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuild theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuild theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuild.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoBuild.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoBuildPolicy Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                               }}}}}}        
+                           ".  CC__CC  ."    
+                           II{+II--II+{II    
+                           uu,;cx--xc;,uu    
+               `=TyEEEEEVaojj"'......'"jjuuuu
+              ~5u~'kkkk.~uSwwk2)~-'~LoV6m  55
+             ^kT   kkkk   rkwRAwZVVKwGRRR``VV
+             {V'   VVVV   `Vk``dd``dd``dd``ZZ
+             |S_          .SVXXXXXXXXXXXX..44
+             .o1-````````-tyVkk``kk``kkkk--bb
+              `L5(=````~c5i2ooooooooooooo__mm
+                `22````22~,,,,,,,,,,,,,,,,,DD
+                 oo````oo88888888888888888888
+                 uu....uu                    
+                 cu;--~ul                    
+                 `!tIIF/`                    
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoBuildPolicy}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildPolicy theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildPolicy theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildPolicy theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildPolicy.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoBuildPolicy.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoBuildSelection Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                         ll----ll            
+                   .     }}----}}     .      
+                   CCJr=,CC''''CC,=rJCC      
+                   11_"=rTC....CTr="_11      
+                   Lu|~.``````````.^cu(      
+             IIIIIIIIuo3+_``````_+IouIIIIIIII
+             uu  888888#6aC!'.=}aXOD88888  uu
+             aa  OOOOOOOOOwEyyk9GOOOOOOOO  aa
+             VV``99    9999    9999    99``VV
+             PP``kk````kkkk````kkkk````kk``PP
+             XX..oooooooooooooooooooooooo..XX
+             ww''''''''''''''''''''''''''''ww
+             HH--------aaaa----aaaa--------HH
+             ##________HHHH____HHHH________##
+             DD::::::::::::::::::::::::::::DD
+             88888888888888888888888888888888
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoBuildSelection}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildSelection theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildSelection theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildSelection theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildSelection.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoBuildSelection.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoBuildStatusUpToDate Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                       _~!+cll(r!~_          
+                    _+IF?+/=~~=!+?t3r,       
+                  =I[r~,,,,,,,,,,,,~r{o/`    
+                `}a+__________________/e3.   
+                1V;-----------_l99)----~au`  
+               !hr------------}99r------!hL  
+               16,''''''''''-]96/'''''''-6k  
+               ow_...../99{_o96~........'wU  
+               rd/``````;6999Z,`````````~dl  
+               `6w,``````^69S_`````````-Uw.  
+                '6b~``````````````````,Xd_   
+                 `TRI=`            `~}D1.    
+                   `/aD1=,-`  `-,=tRE+.      
+                      `!7uEH88AZuJ+.         
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoBuildStatusUpToDate}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildStatusUpToDate theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildStatusUpToDate theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoBuildStatusUpToDate theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoBuildStatusUpToDate.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoBuildStatusUpToDate.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoCancel Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                               tttttt        
+                           ".  FF__FF  ."    
+                           11}+11--11+}11    
+                           uu:=LC''CL=:uu    
+                       uuuuoo"........,oouuuu
+                `=|yyr`55  m9Voc+7hRRRb6O  55
+               _ww+~/2wwV  #RDDw}coR#H###  VV
+               -k9;^^^cbO'!R4Y*!2V~bb``bb``ZZ
+                 =yu*==!56]r=+5OGUUUUUUUU..44
+                   "u5?!!!!?5Gw``SS``SSSS--bb
+                   ^la7++++JUbauuuuuuuuuu__mm
+                _ckuTLL|oaJLcuXv",,,,,,,,,,DD
+              =2E1T((TuX88pkC|JVb888888888888
+             JK]TTT7Ikl.   :{kIi1Ec`         
+             +k{sJ1SS=       :tko{2a=        
+              ^72Vx+`          _lVVVV{-      
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoCancel}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoCancel))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoCancel.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoCancel&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoCancel theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoCancel theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoCancel theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCancel.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoCancel.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoClean Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                     [[l+~_`                 
+                     [[:~*|{l+~_`66666666    
+                     [[''''':~*|{ww    ww    
+                     [['''''-";r7bbbbbbbb    
+                     [[-";r7[|/=ob)^~=!lba.  
+                     [[[|/"'  'EX=,^~=!*Tw6_ 
+                             "dI:_,^~=!*r)EO=
+                             RRRRRRRRRRRRRRRR
+             aaaaaaaaaaaaaaaaaaaaaa^~=!*rcTDD
+             kk``%%%%%%%%%%%%%%``kk^~=!*rcTDD
+             XX..RR..RR..RR..RR..XX^~=!*rcT88
+             ww--pppppppppppppp--ww^~=!*rcT%%
+             GG__XXXX--XX--XXXX__GG^~=!*rcTMM
+             RR""SSSSSSSSSSSSSS""RR^~=!*rcTBB
+             DD~~~~~~~~~~~~~~~~~~DD$$$$$$$$$$
+             %%%%%%%%%%%%%%%%%%%%%%          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoClean}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoClean))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoClean.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoClean&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoClean theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoClean theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoClean theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoClean.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoClean.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoCleanSelection Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                     [[l+~_`                 
+                     [[:~*|{l+~_`66666666    
+                     [[''''':~*|{ww    ww    
+                     [['''''-";r7bbbbbbbb    
+                     [[-";r7[|/=ob)^~=!lba.  
+                     [[[|/"'  'EX=,^~=!*Tw6_ 
+                             "dI:_,^~=!*r)EO=
+                             RRRRRRRRRRRRRRRR
+             aaaaaaaaaaaaaaaaaaaaaa^~=!*rcTDD
+             kk``DDDDDDDDDDDDDD``kk^~=!*rcTDD
+             XX..pp--pp--pp--pp..XX^~=!*rcT88
+             ww--EEEEEEEEEEEEEE--ww^~=!*rcT%%
+             GG__________________GG^~=!*rcTMM
+             RR""""""88""88""""""RR^~=!*rcTBB
+             DD~~~~~~~~~~~~~~~~~~DD$$$$$$$$$$
+             %%%%%%%%%%%%%%%%%%%%%%          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoCleanSelection}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoCleanSelection theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoCleanSelection theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoCleanSelection theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoCleanSelection.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoCleanSelection.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoDebug Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                   ;;=,`                     
+                   !!`_;=_`                  
+                   //   '^/~-                
+                   ++     `_;\".             
+                   ++````````.^+/:`          
+                   rr```````````_=r;-        
+                   LL`````````````."+L~      
+                   ))`````````````.,/)/      
+                   TT..........._!(L^`       
+                   77--------_=cT;-          
+                   ll------~rlr:             
+                   }}___^+lT~`               
+                   CC"/i{/-                  
+                   IIIc"                     
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoDebug}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoDebug))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoDebug.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoDebug&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebug theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebug theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebug theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebug.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoDebug.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoDebugDontBuild Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                         //!".               
+                         ++."/!_`            
+                         rr```_=r=-          
+                         rr`````."/r~.       
+                         LL````````-=r+"`    
+                         ))...........,/)/_  
+                         TT'''''''''''''-~?|=
+                         77--------------^+7+
+             nnnnnnnnnnnnnnnnnnnnnn---"\7)~` 
+             55  88888888888888  55,!TJ!-    
+             VV``OO``OO``OO``OO``VV{?,       
+             XX``44444444444444``XX`         
+             ww''kkkk``kk``kkkk''ww          
+             AA--oooooooooooooo--AA          
+             RR,,,,,,,,,,,,,,,,,,RR          
+             8888888888888888888888          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoDebugDontBuild}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebugDontBuild theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebugDontBuild theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebugDontBuild theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugDontBuild.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoDebugDontBuild.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoDebugSelection Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                         //!".               
+                         ++."/!_`            
+                         rr```_=r=-          
+                         rr`````."/r~.       
+                         LL````````-=r+"`    
+                         ))...........,/)/_  
+                         TT'''''''''''''-~?|=
+                         77--------------^+7+
+             nnnnnnnnnnnnnnnnnnnnnn---"\7)~` 
+             55  RRRRRRRRRRRRRR  55,!TJ!-    
+             VV``44``44``44``44``VV{?,       
+             XX``aaaaaaaaaaaaaa``XX`         
+             ww''''''''''''''''''ww          
+             AA------DD--DD------AA          
+             RR,,,,,,,,,,,,,,,,,,RR          
+             8888888888888888888888          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoDebugSelection}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebugSelection theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebugSelection theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoDebugSelection theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoDebugSelection.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoDebugSelection.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEnableHeuristics Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                         .-_,"",_-.          
+                      .,="-.````.-"="'       
+                     ";_`           -;~`     
+                   `;!.              `=!`    
+                   ^+_  ````````````  -+=    
+                   \r` ``````````````  rr    
+                   =c- `...\L__L\...` .c!    
+                   `Tr` `.''+oo+'''`  +T-    
+                    .)|_  `--oo--`  -LT-     
+                      ^tT  --oo--  |t=`      
+                       ]]          ]]        
+                       DD`'_^=+cluk6X        
+                       OD.'_^=+cluk6h        
+                       cDr'_^=+cluU6|        
+                        TDo+==+Tuh9T`        
+                         -rk4AGher-          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEnableHeuristics}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEnableHeuristics theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEnableHeuristics theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEnableHeuristics theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEnableHeuristics.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEnableHeuristics.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilter Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                                             
+                 llllllllllllllllllllllll    
+                 *l/.``      ``..--__"rlr    
+                  _T7"`      ``..--_=77,     
+                    =lr.     ``..-_?l!`      
+                     .Ll~    ``.'=J)-        
+                       "J)-  ``_cl~          
+                        `ll  ``ll`           
+                         ll  ``ll            
+                         ll  ``ll            
+                         ll  ``ll            
+                         ll  -\l+            
+                         ll./l+-             
+                         lll+-               
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilter}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilter theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilter theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilter theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilter.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilter.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilterShowAll Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                    _*?7{aaaaaaaaaaaaaaaaaa  
+                 `+jt=_'`                yy  
+                ,2F' `_,^==============  kk  
+               "ET  ,~~~~~~~~~~~~~~~~~~  EE  
+               1U_ _^^^^^^^^~=^^^^^^^^^  UU  
+               66  """""""""7F"""""""""  66  
+               99  ,,,,,,,,~bp;,,,,,,,,  99  
+               bb  __~cl)ccoppScc)l|~__  bb  
+               HH  ____=TXpppppp9i=____  HH  
+               AA  ------:6ppppb"------  AA  
+               RR  ------Cpu/!xpe------  RR  
+               DD  .....!L:...._r+.....  DD  
+               DD  ....................  DD  
+               88  ````````````````````  88  
+               88                        88  
+               WWWWWWWWWWWWWWWWWWWWWWWWWWWW  
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilterShowAll}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowAll theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowAll theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowAll theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowAll.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilterShowAll.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilterShowConsole Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                    _*?7{aaaaaaaaaaaaaaaaaa  
+                 `+jt=_'`                yy  
+                ,2F' `_,^==============  kk  
+               "ET  ,~~~~~~~~~~~~~~~~~~  EE  
+               1U_ _^^^^^^^^^^^^^^^^^^^  UU  
+               66  ""1p1;""""""""""""""  66  
+               99  ,,,=xpx=,,,,,,,,,,,,  99  
+               bb  _____~CpC~__________  bb  
+               qq  _____,Tw5!__________  qq  
+               AA  ---:|w5;------------  AA  
+               RR  --)we=--------------  RR  
+               DD  ..........pppppppp..  DD  
+               DD  ....................  DD  
+               88  ````````````````````  88  
+               88                        88  
+               WWWWWWWWWWWWWWWWWWWWWWWWWWWW  
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilterShowConsole}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowConsole theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowConsole theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowConsole theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowConsole.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilterShowConsole.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilterShowErrors Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                    _*?7Faaaaaaaaaaaaaaaaaa  
+                 `+e}=_'`                SS  
+                ,2F' `_,^==============  kk  
+               "ET  ,~~~~~~~~~~~~~~~~~~  EE  
+               1U_ _^^^^;TI5PP5I7!^^^^^  UU  
+               66  """=5w1/~,,~!}wV;"""  66  
+               ww  ,,!wE^--------"yb*,,  ww  
+               bb  __1p;-pppppppp-^pS__  bb  
+               HH  __op~-pppppppp-,pE__  HH  
+               OO  --;bj,--------_1p+--  OO  
+               RR  ---^EX7=,--:~|Z6=---  RR  
+               DD  ....'~ToPppPo7=-....  DD  
+               DD  ....................  DD  
+               88  ````````````````````  88  
+               88                        88  
+               WWWWWWWWWWWWWWWWWWWWWWWWWWWW  
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilterShowErrors}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowErrors theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowErrors theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowErrors theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrors.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilterShowErrors.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilterShowErrorsOnly Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                    _*?7Faaaaaaaaaaaaaaaaaa  
+                 `+e}=_'`                SS  
+                ,2F' `_,^==============  kk  
+               "ET  ,~~~~~~~~~~~~~~~~~~  EE  
+               1U_ _^^^^;TI5PP5I7!^^^^^  UU  
+               66  """=5w1/~,,~!}wV;"""  66  
+               ww  ,,!wE^--------"yb*,,  ww  
+               bb  __1p;-pppppppp-^pS__  bb  
+               HH  __op~-pppppppp-,pE__  HH  
+               OO  --;bj,--------_1p+--  OO  
+               RR  ---^EX7=,--:~|Z6=---  RR  
+               DD  ....'~ToPppPo7=-....  DD  
+               DD  ....................  DD  
+               88  ````````````````````  88  
+               88                        88  
+               WWWWWWWWWWWWWWWWWWWWWWWWWWWW  
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilterShowErrorsOnly}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowErrorsOnly theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowErrorsOnly theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowErrorsOnly theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowErrorsOnly.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilterShowErrorsOnly.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilterShowOutput Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                    _*?7Faaaaaaaaaaaaaaaaaa  
+                 `+e}=_'`                SS  
+                ,2F' `_,^==============  kk  
+               "ET  ,~~~~~~~~~~~~~~~~~~  EE  
+               1U_ _^^^^^^^^^^^^^^^^^^^  UU  
+               66  ""pppppppppppppppp""  66  
+               ww  ,,pp,,,,,,,,,,,,pp,,  ww  
+               bb  __pp____________pp__  bb  
+               HH  __pp____pppp____pp__  HH  
+               OO  --pppp--pppp--pppp--  OO  
+               RR  --------pppp--------  RR  
+               DD  ......=oppppo=......  DD  
+               DD  ........~oo~........  DD  
+               88  ````````````````````  88  
+               88                        88  
+               WWWWWWWWWWWWWWWWWWWWWWWWWWWW  
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilterShowOutput}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowOutput theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowOutput theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowOutput theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowOutput.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilterShowOutput.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilterShowService Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                    _*?7Faaaaaaaaaaaaaaaaaa  
+                 `+e}=_'`                SS  
+                ,2F' `_,^==============  kk  
+               "ET  ,~~~~~~~~~~~~~~~~~~  EE  
+               1U_ _^^^^^^^^^^^^^^^^^^^  UU  
+               66  ""pppppppppppppp""""  66  
+               ww  ,,,,,,,,,,,,,,,,,,,,  ww  
+               bb  __pppppppp__________  bb  
+               HH  ____________________  HH  
+               OO  --pppppppppp--------  OO  
+               RR  --------------------  RR  
+               DD  ..pppppp............  DD  
+               DD  ....................  DD  
+               88  ````````````````````  88  
+               88                        88  
+               WWWWWWWWWWWWWWWWWWWWWWWWWWWW  
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilterShowService}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowService theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowService theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowService theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowService.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilterShowService.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilterShowWarnings Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                    _*?7Faaaaaaaaaaaaaaaaaa  
+                 `+e}=_'`                SS  
+                ,2F' `_,^==============  kk  
+               "ET  ,~~~~~~~~~~~~~~~~~~  EE  
+               1U_ _^^^^^^/wppw/^^^^^^^  UU  
+               66  """"""!wZ":yw!""""""  66  
+               ww  ,,,,,;wZ"??"yw;,,,,,  ww  
+               bb  ____=9Z"-pp,:y9=____  bb  
+               HH  ___=9Z"--pp,-:y9=___  HH  
+               OO  --~9Z"---??_--:y9~--  OO  
+               RR  --Cpc----??_---LpC--  RR  
+               DD  ..-IppppppppppppI-..  DD  
+               DD  ....................  DD  
+               88  ````````````````````  88  
+               88                        88  
+               WWWWWWWWWWWWWWWWWWWWWWWWWWWW  
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilterShowWarnings}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowWarnings theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowWarnings theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowWarnings theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarnings.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilterShowWarnings.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoEventsViewFilterShowWarningsAndErrors Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                    _*?7Faaaaaaaaaaaaaaaaaa  
+                 `+e}=_'`                SS  
+                ,2F' `_,^==============  kk  
+               "ET  ,~~~~~~~~~~~~~~~~~~  EE  
+               1U_ _^^^^;TI5PP5I7!^^^^^  UU  
+               66  """=5w1/~,,~!}wV;"""  66  
+               ww  ,,!wE^--pppp--"yb*,,  ww  
+               bb  __1p;---pppp---^pS__  bb  
+               HH  __op~---????---,pE__  HH  
+               OO  --;bj,--pppp--_1p+--  OO  
+               RR  ---^EX7=,--:~|Z6=---  RR  
+               DD  ....'~ToPppPo7=-....  DD  
+               DD  ....................  DD  
+               88  ````````````````````  88  
+               88                        88  
+               WWWWWWWWWWWWWWWWWWWWWWWWWWWW  
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoEventsViewFilterShowWarningsAndErrors}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowWarningsAndErrors theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowWarningsAndErrors theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoEventsViewFilterShowWarningsAndErrors theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoEventsViewFilterShowWarningsAndErrors.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoEventsViewFilterShowWarningsAndErrors.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRebuild Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                               [[[[[[        
+                           ^.  11,,11  .^    
+                           uu[ruu__uur[uu    
+                           jj"!|I--I|!"jj    
+                       2222aa~--------^aa2222
+                       SS``RbEaT=--=)eEwR``SS
+               /aaaaaaaaan|9GRmbXkkhwORRR``EE
+             -to7_     oo.:/It=HH``HH``HH..66
+             IIII\-    IIT+-`~I5666666666--bb
+             `tt- -/| 'CCCCC= ^C+kk''kkkk__GG
+             /l,`"lll*lllllli``lt55555555,,RR
+             ?s'`Lssssssrsss!`-sT^^^^^^^^^^DD
+             ~T^`~TTTTT_`|+,`'rTb888888888888
+              !c^.:/Lcc````-^?ccc            
+               ,++~_'??.....-;?r-            
+                 -";+rrrrrrrrr=`             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRebuild}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRebuild))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRebuild.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRebuild&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRebuild theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRebuild theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRebuild theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuild.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRebuild.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRebuildSelection Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                               [[[[[[        
+                           ^.  11,,11  .^    
+                           uu[ruu__uur[uu    
+                           jj"!|I--I|!"jj    
+                       2222aa~--------^aa2222
+                       SS``#wEaT=--=)ek9#``SS
+               /aaaaaaaaan|6bGp4UkkP9bAAA``EE
+             -to7_     oo.:/I};XX..XX..XX..66
+             IIII\-    IIT+-`~Ioaaaaaaaaa--bb
+             `tt- -/| 'CCCCC= ^Cr__________GG
+             /l,`"lll*lllllli``l},,DD,,,,,,RR
+             ?s'`Lssssssrsss!`-sT^^^^^^^^^^DD
+             ~T^`~TTTTT_`|+,`'rTb888888888888
+              !c^.:/Lcc````-^?ccc            
+               ,++~_'??.....-;?r-            
+                 -";+rrrrrrrrr=`             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRebuildSelection}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRebuildSelection theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRebuildSelection theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRebuildSelection theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRebuildSelection.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRebuildSelection.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRepeat Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                `!5yyyyyyyyyyyxi+~_`         
+              `!o7_        5555.,;Loz"       
+             ;IT_          uuuu    `~lx=     
+             IIIIII/       IIIIr=-    ~1i`   
+                TF,   .    [[[[[[[|_   _ti`  
+               ~}=```-l``-+}}}}}}}}t_```,}!  
+               rl'```+l-\lllllllllll)````l7  
+               Li.```riiiiiiiiiiir_i)````iT  
+               ~T"```_TTTTTTTTTr_``T^```:T!  
+               `?c_```_?|||||||````,```-Lc`  
+                `+c,```.,=+cccc```````,Lccccc
+                  ^r/,.....LLLL..........-;L;
+                    _/+="_-rrrr........-=r=. 
+                      `-,~/+++++++++++++=.   
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRepeat}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRepeat))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRepeat.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRepeat&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRepeat theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRepeat theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRepeat theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRepeat.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRepeat.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRun Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                              /33333333333   
+                             ~ur``````.*u|   
+                            :oT.`````"{x"    
+                           -u}.````-cj+`     
+                          `[u-````=o}_       
+                         `te_```-laaaaaaaaa  
+                         Ty^```````````-LyT  
+                        rV!          -cVT-   
+             jjjjjjjjjjjkkkkkk/    -Lk7-     
+             SS``8888888888wk/   'ck7-       
+             KK``RR``RR``R4K/  'cKK-         
+             44''bbbbbbbb6Z/ .cZt64          
+             dd--ZZZZ''ZXUUUUUX~-dd          
+             ##::aaaaaaaaaaaaaa::##          
+             DD""""""""""""""""""DD          
+             8888888888888888888888          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRun}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRun))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRun.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRun&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRun theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRun theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRun theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRun.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRun.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRunDontBuild Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                         //!".               
+                         ++."/!_`            
+                         rr```_=r=-          
+                 rcTzlF3orr`````."/r~.       
+                 rc``````LL````````-=r+"`    
+                 rcTzlF3o))....7;-....,/)/_  
+               \+rcTzlF3oTT''''5557!_'''-~?|=
+               \+``````3o77----555[+^----^+7+
+             nnnnnnnnnnnnnnnnnnnnnn---"\7)~` 
+             55  88888888888888  55,!TJ!-    
+             VV``OO``OO``OO``OO``VV{?,       
+             XX``44444444444444``XX`         
+             ww''kkkk``kk``kkkk''ww          
+             AA--oooooooooooooo--AA          
+             RR,,,,,,,,,,,,,,,,,,RR          
+             8888888888888888888888          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRunDontBuild}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunDontBuild theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunDontBuild theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunDontBuild theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunDontBuild.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRunDontBuild.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRunningBuild Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                                             
+                       `"=/?TTL*=^.          
+                    `~ct/_-.``.-_!l|~`       
+                   ~t|_  ````````  _Lt;      
+                  !l!` ``````:7Skl"``=lr     
+                 "J! ````````EDDDDG`` ~J=    
+                 rz.`````````"IdGu=````zT    
+                 r7.```````````````````7T    
+                 ^T=``              ``"T=    
+                  /|~``            ``"|+`    
+                   =)/-``        ``-!)!`     
+                    .~r+~_--..'-_~+?~-       
+                       ."=!+LL+!=^-          
+                                             
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRunningBuild}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuild theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuild theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuild theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRunningBuild.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRunningBuildError Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                                             
+                       ./cl266at)*-          
+                    .+EDZ{JTLL|J{kD6r-       
+                   c8R1Lczlt}}tli)?CH8i`     
+                  1%6|)ltttttT^'."c|ck%V`    
+                 rNw|Tlllllll.     lT|kNJ    
+                 w$fTziiiiiii+-` -/ivTz$8    
+                 O$Cv7TTTTTTTTTTTTTTTvJ$M    
+                 7Qblv))))))))))))))7lhQo    
+                 `wgbtJc??????????Lit6QD`    
+                  `ag8jtl|Lr++rL|JtjDg9`     
+                    "u$$AV53{{I2VA$Qa~       
+                       ^IXR$gg$D6u=          
+                                             
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRunningBuildError}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuildError theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuildError theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuildError theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRunningBuildError.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRunningBuildWarning Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                                             
+                                             
+                       `,~;+LL+!~"`          
+                    `^rz!_-.```-_;7c^`       
+                   ~l)_  ``....``  _?t;      
+                  /{/```.....,JEZt^``={r     
+                 ^]/`````````XDDDDR```=];    
+                 TI-`````````^uOR5=````I{    
+                 zu-```````````````````u1    
+                 =o/``              ``~o+    
+                  Ta!.`            `.=2l`    
+                   ryT_.``      ``._cy|`     
+                    -+o1+^,-''-:^+15r_       
+                       _+)luEEot|+:          
+                                             
+                                             
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRunningBuildWarning}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuildWarning theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuildWarning theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunningBuildWarning theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRunningBuildWarning.</summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection">
+             <summary>
+            	<para>
+            		<para>SolBuilderDuoRunSelection Themed Icon generated identifiers:</para>
+            		<para>— <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+            		<para>— <see cref="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection.Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="T:JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+            		<para>
+            			<code>
+                         //!".               
+                         ++."/!_`            
+                         rr```_=r=-          
+                 rcTzlF3orr`````."/r~.       
+                 rc``````LL````````-=r+"`    
+                 rcTzlF3o))....7;-....,/)/_  
+               \+rcTzlF3oTT''''5557!_'''-~?|=
+               \+``````3o77----555[+^----^+7+
+             nnnnnnnnnnnnnnnnnnnnnn---"\7)~` 
+             55  RRRRRRRRRRRRRR  55,!TJ!-    
+             VV``44``44``44``44``VV{?,       
+             XX``aaaaaaaaaaaaaa``XX`         
+             ww''''''''''''''''''ww          
+             AA------DD--DD------AA          
+             RR,,,,,,,,,,,,,,,,,,RR          
+             8888888888888888888888          
+            </code>
+            		</para>
+            	</para>
+            </summary>
+            <remarks>
+            	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+            </remarks>
+            <example>
+            	<code>&lt;Image Source="{icons:ThemedIcon myres:SolBuilderDuoThemedIcons+SolBuilderDuoRunSelection}" /&gt;        &lt;!-- XAML --&gt;</code>
+            </example>
+            <example>
+            	<code>[Item(Name="Sample", Icon=typeof(SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection))]        // C# Type attribute</code>
+            </example>
+            <example>
+            	<code>IconId iconid = SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection.Id;        // IconId identifier object</code>
+            </example>
+            <example>
+            	<code>themediconmanager.GetIcon&lt;SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection&gt;()        // Icon image for rendering</code>
+            </example>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection.Id">
+            <inheritdoc cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection">identifier class</inheritdoc>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection.Load_Color">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunSelection theme aspect Color.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection.Load_Gray">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunSelection theme aspect Gray.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection.Load_GrayDark">
+            <summary>Loads the image for Themed Icon SolBuilderDuoRunSelection theme aspect GrayDark.</summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Src.SolBuilderDuoThemedIcons.SolBuilderDuoRunSelection.GetThemeImages">
+            <summary>Returns the set of theme images for Themed Icon SolBuilderDuoRunSelection.</summary>
+        </member>
+    </members>
+</doc>

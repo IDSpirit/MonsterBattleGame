@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis</name>
+    </assembly>
+    <members>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.Indicator.FilesCountStatusIndicatorAutomation.Font">
+            <summary>
+            Calculated by this object from theme, used by presentations.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.Indicator.FilesCountStatusIndicatorAutomation.ForeColor">
+            <summary>
+            Calculated by this object from theme, used by presentations.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.Indicator.FilesCountStatusIndicatorAutomation.IsHot">
+            <summary>
+            Assigned by owner, used directly by presentations.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.Indicator.FilesCountStatusIndicatorAutomation.Label">
+            <summary>
+            Used by presentation.
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.Indicator.ProgressStatusControl">
+            <summary>
+            Formerly, this used to be a Windowless Control to render the SWA progress indicator in the status bar and Errors View, both round and bar forms.
+            Currently, it's the Windowless Control view for the bar-mode only (round form has a new implementation).
+            The WPF View for the Bar mode just renders this Windowless Control.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.Indicator.RoundProgressStatusControlAutomation.ProgressFraction">
+            <summary>
+            Model input. [0…1] progress position.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.Indicator.RoundProgressStatusControlAutomation.RoundIcon">
+            <summary>
+            Viewmodel output, for binding presentation in views.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.Indicator.RoundProgressStatusControlAutomation.State">
+            <summary>
+            Model input. Indicator state.
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.RunInspection.FilterIssuesForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.RunInspection.FilterIssuesForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.RunInspection.FilterIssuesForm.InitializeComponent(JetBrains.Application.UI.Components.IUIApplication)">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+            <param name="uiapp"></param>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.RunInspection.FindSimilarIssuesForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.RunInspection.FindSimilarIssuesForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:JetBrains.PsiFeatures.UIInteractive.SolutionAnalysis.View.RunInspection.FindSimilarIssuesForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

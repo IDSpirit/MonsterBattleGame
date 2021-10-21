@@ -1,0 +1,168 @@
+﻿<Window x:Class="MonsterBattleUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:MonsterBattleUI.ViewModels"
+        xmlns:local="clr-namespace:MonsterBattleUI"
+        mc:Ignorable="d" FontSize="20" Icon="../Icons/favicon.ico"
+        Title="Pokemon Battle" Height="700" Width="1000" MinHeight="600" MinWidth="975" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="3.5*"/>
+            <ColumnDefinition Width="3.5*"/>
+            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Pokemon Battle!" 
+               FontSize="30" FontWeight="Bold" Margin="10"></Label>
+
+        <ComboBox Grid.Row="2" Grid.Column="1" MinWidth="150" ToolTip="Select The Move You Want To Use Here"
+                  ItemsSource="{Binding list_of_moves}" MaxDropDownHeight="400"
+                  SelectedItem="{Binding selected_move}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding move_name}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding move_power, StringFormat={}Power: {0}}"/>
+                        <TextBlock Text="{Binding accuracy, StringFormat={}Accuracy: {0}}"/>
+                        <Image Source="{Binding attack_type_icon}" HorizontalAlignment="Center" MaxWidth="75"/>
+                        <Image Source="{Binding attack_category_icon}" VerticalAlignment="Center" 
+                               HorizontalAlignment="Center" MaxWidth="115"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Grid.Row="2" Grid.Column="2" MinWidth="100" Margin="5,0,0,0"
+               Content="~ Pick your desired move on the left"></Label>
+
+        <TextBlock Grid.Row="3" Grid.Column="2" MinWidth="100" Margin="5"
+                   Text="{Binding selected_move.move_name, Mode=TwoWay, StringFormat={}You are about to select: {0}}"></TextBlock>
+
+        <Button Grid.Row="3" Grid.Column="1" MinHeight="30" Click="Button_Click" ToolTip="Click Here To Use Your Selected Pokemon's Move">Choose Move</Button>
+
+        <Border Grid.Row="4" Grid.Column="1" Background="Bisque" CornerRadius="20" ToolTip="Your Pokemon's Stat Values">
+            <StackPanel Margin="10" >
+
+                <TextBlock Text="{Binding player.name, Mode=TwoWay, StringFormat={}{0} stats}"/>
+                <TextBlock Text="{Binding player.hp, Mode=TwoWay, StringFormat={}HP: {0}}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding player.ph_attack, Mode=TwoWay, StringFormat={}Physical Attack: {0}}"/>
+                    <TextBlock Text="{Binding player.stat_modifier_object.ph_attack_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding player.ph_defense, Mode=TwoWay, StringFormat={}Physical Defense: {0}}"/>
+                    <TextBlock Text="{Binding player.stat_modifier_object.ph_defense_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding player.sp_attack, Mode=TwoWay, StringFormat={}Special Attack: {0}}"/>
+                    <TextBlock Text="{Binding player.stat_modifier_object.sp_attack_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding player.sp_defense, Mode=TwoWay, StringFormat={}Special Defense: {0}}"/>
+                    <TextBlock Text="{Binding player.stat_modifier_object.sp_defense_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding player.speed, Mode=TwoWay, StringFormat={}Speed: {0}}"/>
+                    <TextBlock Text="{Binding player.stat_modifier_object.speed_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="4" Grid.Column="2" Background="Bisque" CornerRadius="20" ToolTip="Your Opponent's Stat Values">
+            <StackPanel Margin="10">
+
+                <TextBlock Text="{Binding enemy.name, Mode=TwoWay, StringFormat={}{0} stats}"/>
+                <TextBlock Text="{Binding enemy.hp, Mode=TwoWay, StringFormat={}HP: {0}}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding enemy.ph_attack, Mode=TwoWay, StringFormat={}Physical Attack: {0}}"/>
+                    <TextBlock Text="{Binding enemy.stat_modifier_object.ph_attack_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding enemy.ph_defense, Mode=TwoWay, StringFormat={}Physical Defense: {0}}"/>
+                    <TextBlock Text="{Binding enemy.stat_modifier_object.ph_defense_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding enemy.sp_attack, Mode=TwoWay, StringFormat={}Special Attack: {0}}"/>
+                    <TextBlock Text="{Binding enemy.stat_modifier_object.sp_attack_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding enemy.sp_defense, Mode=TwoWay, StringFormat={}Special Defense: {0}}"/>
+                    <TextBlock Text="{Binding enemy.stat_modifier_object.sp_defense_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding enemy.speed, Mode=TwoWay, StringFormat={}Speed: {0}}"/>
+                    <TextBlock Text="{Binding enemy.stat_modifier_object.speed_modifier_string, Mode=TwoWay, StringFormat={} {0}}"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+
+                <TextBlock Text="{Binding player.name, Mode=TwoWay, StringFormat='Your {0} HP:'}"/>
+                <Border BorderThickness="2" BorderBrush="Black" Width="{Binding player.HpBar.maxLength}" HorizontalAlignment="Left">
+                    <Rectangle Width="{Binding player.HpBar.length}" Height="5" HorizontalAlignment="Left">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush>
+                                <GradientStop Color="{Binding player.HpBar.colour}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
+
+                <TextBlock Text="{Binding enemy.name, Mode=TwoWay, StringFormat='Opponent {0} HP:'}"/>
+                <Border BorderThickness="2" BorderBrush="Black" Width="{Binding enemy.HpBar.maxLength}" HorizontalAlignment="Left">
+                    <Rectangle Width="{Binding enemy.HpBar.length}" Height="5" HorizontalAlignment="Left">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush>
+                                <GradientStop Color="{Binding enemy.HpBar.colour}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+
+            </StackPanel>
+
+            <Image Grid.Row="1" Grid.Column="0" Source="{Binding backSprite}" ToolTip="Your Pokemon"/>
+            <Image Grid.Row="1" Grid.Column="1" Source="{Binding frontSprite}" ToolTip="Your Opponent's Pokemon"/>
+
+        </Grid>
+
+        <TextBox Grid.Row="1" Grid.Column="3" Grid.RowSpan="6" Margin="10" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap"
+                 Text="{Binding messages, Mode=TwoWay, StringFormat={}Log: &#x0a;{0}}"
+                 FontSize="18" MaxLines="38" ToolTip="Message Log Containing Battle Information"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.PsiFeatures.VisualStudio.SinceVs14RoslynAware</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.PsiFeatures.VisualStudio.SinceVs14RoslynAware.ExperimentalRoslynOptimizer.CmdLineRoslynOff">
+            <summary>
+            Disables Roslyn services
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.VisualStudio.SinceVs14RoslynAware.ExperimentalRoslynOptimizer.CmdLineRoslynOff.KeyName">
+            <summary>
+            Causes the package to disable Roslyn services
+            </summary>
+        </member>
+        <member name="T:JetBrains.PsiFeatures.VisualStudio.SinceVs14RoslynAware.ExperimentalRoslynOptimizer.CmdLineRoslynOn">
+            <summary>
+            Enables Roslyn services
+            </summary>
+        </member>
+        <member name="F:JetBrains.PsiFeatures.VisualStudio.SinceVs14RoslynAware.ExperimentalRoslynOptimizer.CmdLineRoslynOn.KeyName">
+            <summary>
+            Causes the package to leave Roslyn services intact
+            </summary>
+        </member>
+    </members>
+</doc>

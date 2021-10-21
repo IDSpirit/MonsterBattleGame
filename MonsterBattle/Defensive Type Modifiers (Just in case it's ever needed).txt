@@ -1,0 +1,194 @@
+//Move_types attack_type = 
+            float modifier_stage = 1f;
+
+            //Dictionary<Move_types, float> fire_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.grass, 2f },
+            //    { Move_types.bug, 2f },
+            //    { Move_types.ice, 2f },
+            //    { Move_types.steel, 2f },
+            //    { Move_types.water, 0.5f},
+            //    { Move_types.dragon, 0.5f},
+            //    { Move_types.fire, 0.5f},
+            //    { Move_types.rock, 0.5f}
+            //};
+
+            //Dictionary<Move_types, float> water_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.fire, 2f },
+            //    { Move_types.ground, 2f },
+            //    { Move_types.rock, 2f },
+            //    { Move_types.water, 0.5f},
+            //    { Move_types.dragon, 0.5f},
+            //    { Move_types.grass, 0.5f}
+            //};
+
+            //Dictionary<Move_types, float> grass_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.water, 2f },
+            //    { Move_types.rock, 2f },
+            //    { Move_types.ground, 2f },
+            //    { Move_types.steel, 2f },
+            //    { Move_types.bug, 0.5f},
+            //    { Move_types.dragon, 0.5f},
+            //    { Move_types.fire, 0.5f},
+            //    { Move_types.flying, 0.5f},
+            //    { Move_types.poison, 0.5f},
+            //    { Move_types.grass, 0.5f}
+            //};
+
+            //Dictionary<Move_types, float> electric_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.flying, 2f },
+            //    { Move_types.water, 2f },
+            //    { Move_types.dragon, 0.5f},
+            //    { Move_types.electric, 0.5f},
+            //    { Move_types.grass, 0.5f},
+            //    { Move_types.ground, 0.5f}
+
+            //};
+
+            //Dictionary<Move_types, float> psychic_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.fighting, 2f },
+            //    { Move_types.poison, 2f },
+            //    { Move_types.psychic, 0.5f},
+            //    { Move_types.steel, 0.5f},
+            //    { Move_types.dark, 0f}
+            //};
+
+            //Dictionary<Move_types, float> ice_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.dragon, 2f },
+            //    { Move_types.flying, 2f },
+            //    { Move_types.grass, 2f },
+            //    { Move_types.ground, 2f },
+            //    { Move_types.ice, 0.5f},
+            //    { Move_types.fire, 0.5f},
+            //    { Move_types.steel, 0.5f},
+            //    { Move_types.water, 0.5f},
+            //};
+
+            //Dictionary<Move_types, float> dragon_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.dragon, 2f },
+            //    { Move_types.steel, 0.5f },
+            //    { Move_types.fairy, 0f}
+            //};
+
+            //Dictionary<Move_types, float> dark_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.ghost, 2f },
+            //    { Move_types.psychic, 2f },
+            //    { Move_types.dark, 0.5f},
+            //    { Move_types.fairy, 0.5f},
+            //    { Move_types.fighting, 0.5f}
+            //};
+
+            //Dictionary<Move_types, float> fairy_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.dark, 2f },
+            //    { Move_types.dragon, 2f },
+            //    { Move_types.fighting, 2f },
+            //    { Move_types.fire, 0.5f},
+            //    { Move_types.poison, 0.5f},
+            //    { Move_types.steel, 0.5f},
+            //};
+
+            //Dictionary<Move_types, float> normal_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.rock, 0.5f},
+            //    { Move_types.ghost, 0.5f}
+            //};
+
+            //Dictionary<Move_types, float> fighting_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.dark, 2f },
+            //    { Move_types.ice, 2f },
+            //    { Move_types.normal, 2f },
+            //    { Move_types.rock, 2f},
+            //    { Move_types.steel, 2f},
+            //    { Move_types.bug, 0.5f},
+            //    { Move_types.fairy, 0.5f},
+            //    { Move_types.flying, 0.5f},
+            //    { Move_types.poison, 0.5f},
+            //    { Move_types.psychic, 0.5f},
+            //    { Move_types.ghost, 0f}
+            //};
+
+            //Dictionary<Move_types, float> flying_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.bug, 2f },
+            //    { Move_types.fighting, 2f },
+            //    { Move_types.grass, 2f },
+            //    { Move_types.electric, 0.5f},
+            //    { Move_types.rock, 0.5f},
+            //    { Move_types.steel, 0.5f}
+            //};
+
+            //Dictionary<Move_types, float> poison_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.fairy, 2f },
+            //    { Move_types.grass, 2f },
+            //    { Move_types.poison, 0.5f},
+            //    { Move_types.ground, 0.5f},
+            //    { Move_types.rock, 0.5f},
+            //    { Move_types.ghost, 0.5f},
+            //    { Move_types.steel, 0f}
+
+            //};
+
+            //Dictionary<Move_types, float> ground_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.electric, 2f },
+            //    { Move_types.poison, 2f },
+            //    { Move_types.fire, 2f},
+            //    { Move_types.rock, 2f},
+            //    { Move_types.bug, 0.5f},
+            //    { Move_types.grass, 0.5f},
+            //    { Move_types.flying, 0f}
+            //};
+
+            //Dictionary<Move_types, float> rock_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.bug, 2f },
+            //    { Move_types.fire, 2f },
+            //    { Move_types.flying, 2f },
+            //    { Move_types.ice, 2f },
+            //    { Move_types.fighting, 0.5f},
+            //    { Move_types.ground, 0.5f},
+            //    { Move_types.steel, 0.5f}
+            //};
+
+            //Dictionary<Move_types, float> bug_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.dark, 2f },
+            //    { Move_types.grass, 2f },
+            //    { Move_types.psychic, 2f },
+            //    { Move_types.fairy, 0.5f },
+            //    { Move_types.fighting, 0.5f },
+            //    { Move_types.fire, 0.5f },
+            //    { Move_types.flying, 0.5f },
+            //    { Move_types.ghost, 0.5f },
+            //    { Move_types.poison, 0.5f},
+            //    { Move_types.steel, 0.5f }
+            //};
+
+            //Dictionary<Move_types, float> ghost_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.ghost, 2f },
+            //    { Move_types.psychic, 2f },
+            //    { Move_types.dark, 0.5f},
+            //    { Move_types.normal, 0f}
+            //};
+
+            //Dictionary<Move_types, float> steel_attacking = new Dictionary<Move_types, float>()
+            //{
+            //    { Move_types.fairy, 2f },
+            //    { Move_types.ice, 2f },
+            //    { Move_types.rock, 2f },
+            //    { Move_types.electric, 0.5f},
+            //    { Move_types.fire, 0.5f},
+            //    { Move_types.steel, 0.5f },
+            //    { Move_types.water, 0.5f }
+            //};

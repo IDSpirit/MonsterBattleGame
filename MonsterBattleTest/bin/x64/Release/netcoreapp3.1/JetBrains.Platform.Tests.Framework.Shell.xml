@@ -1,0 +1,1528 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.Tests.Framework.Shell</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.TestFramework.Application.Zones.ITestsEnvZone">
+            <summary>
+            Test environment zone.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.BaseTest.ThrowLoggedExceptions(System.Boolean)">
+            <summary>
+            Throws all of the logged exceptions collected by silent <see cref="M:JetBrains.Util.Logging.Logger.LogException(System.Exception)"/> and <see cref="M:JetBrains.Util.Logging.Logger.Assert(System.Boolean,System.String)"/> family methods.
+            </summary>
+            <param name="bGC">Whether to perform a full CG so that to collect the errors from hanging finalizers.</param>
+        </member>
+        <member name="M:JetBrains.TestFramework.BaseTest.GetSetting(JetBrains.Text.IBuffer,System.String)">
+            <summary>
+            Read setting from buffer by name.
+            IMPORTANT: you must escape all '}' symbols with '\'
+            If you want use single '\' before closing '}', then place it into "" and then use <see cref="M:JetBrains.Util.StringUtil.RemoveQuotes(System.String)"/>
+            </summary>
+            <param name="buffer"></param>
+            <param name="settingName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.TestFramework.BaseTest.GetSettings(JetBrains.Text.IBuffer,System.String)">
+            <summary>
+            Fetches all settings in <see cref="!:buffer"/> with specified <see cref="!:settingName"/>
+            Setting format: ${<see cref="!:settingName"/>:value}. Value may contain strings in quotes
+            </summary>
+            <param name="buffer">Buffer to fetch settings from. Normally it is document's buffer</param>
+            <param name="settingName">Name of the setting</param>
+            <returns>Enumerable of settings with specified name</returns>
+        </member>
+        <member name="M:JetBrains.TestFramework.BaseTest.EnsureAndCleanupTestSolutionFolder">
+            <summary>
+            Gets a base path for test solution projects.
+            Cleans up the path before use.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.BaseTest.RunGuarded(System.Action)">
+            <summary>
+            Runs the test code under the <see cref="T:JetBrains.Threading.ReentrancyGuard"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.BaseTest.ChangeSettingsTemporarily(JetBrains.Lifetimes.Lifetime,System.Nullable{System.Double})">
+            <summary>
+            Call this method if you would like to change a number of settings in the tests temporarily and then have the changes rolled back when the lifetime ends.
+            </summary>
+            <param name="lifetime"></param>
+            <remarks>Adds a temporary high-priority layer which intercepts all of the writes.</remarks>
+        </member>
+        <member name="F:JetBrains.TestFramework.BaseTestNoShell.RelativeTestDataPathCommonPart">
+            <summary>
+            The common path of the <see cref="P:JetBrains.TestFramework.BaseTestNoShell.RelativeTestDataPath"/> of all the integration tests.
+            MUST be present to avoid potential coping of all testdata to VM
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.BaseTestNoShell.FailTestIfCheckFails">
+             <summary>
+             Whatever the family of methods ExecuteWithGold will throw exceptions on gold mismatch.
+            
+              If you are set this property to false you must to react to gold mismatch in any of the following ways:
+                * Override OnDataDifferentFromGoldFile method for custom handling
+                * Make use of return value of ExecuteWithGold methods
+             </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.BaseTestNoShell.SupportMultipleGolds">
+             <summary>
+             Changes mode of reporting exceptions from ExecuteWithGold family of methods.
+            
+             When enabled,an exception will not be thrown on first gold mismatch, but will be logged with LogLevel.ERROR.
+             If anything logged with Error level in Tests, it is considered as error in TearDown and the test fail.
+             Test will run to the end and you can update all golds without obligation to run test for each gold file.
+            
+             It should be considered as default for tests multiple golds
+             </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.BaseTestNoShell.ROOT_TEMP_FOLDER">
+            <summary>
+            Environment variable expanded to root temp directory
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.BaseTestNoShell.UnitTestsRootTempFolder">
+            <summary>
+            Use the folder as a root folder for all temporary data created in unit tests to make clean-up easier.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.BaseTestNoShell.TraceCategories">
+            <summary>
+            List of namespaces that will be with LogLevel = Trace during the execution of the test.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.BaseTestNoShell.RelativeTestDataPath">
+            <summary>
+            Relative path to this test's data under the base test data path.
+            The default implementation uses class full name parts (without the default namespace of the assembly) for folders.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.BaseTestNoShell.AssertReentrancyGuardIsClean(JetBrains.Threading.ReentrancyGuard,JetBrains.Application.SynchronizationPoint.SynchronizationPoints)">
+            <summary>
+            Ensures the Reentrancy Guard is empty after executing the test.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.BaseTestNoShell.ROOT_TEMP_FOLDER_ENV_VAR">
+            <summary>
+            Environment variable name assigned of root temp directory
+            <seealso cref="P:JetBrains.TestFramework.BaseTestNoShell.UnitTestsRootTempFolder" />
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Build.IntegrationTestingTasks.IntegrationTestsTargetAppArtifact">
+            <summary>
+            Tells which app to run, e.g. VS version.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.IntegrationTestingTasks.IntegrationTestsTargetAppArtifact.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.IntegrationTestingTasks.IntegrationTestsTargetAppArtifact.WithDetectedInstanceIdIfNeeded">
+            <summary>
+            If the target app is a VS without an Instance ID specified, chooses it from available VSes.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestCleanupUserSettings">
+            <summary>
+            Env var name. <see cref="T:System.Boolean"/>.
+            Means the client should delete all of the user settings to reset to the clean conditions before each new DEVENV process respawn.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestAllowCaptureTraces">
+            <summary>
+            Env var name. <see cref="T:System.Boolean"/>.
+            Means CaptureTraces will be run, if true
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestFirstRunEmpty">
+            <summary>
+            Env var name. <see cref="T:System.Boolean"/>.
+            Means the client should run an empty DEVENV process to warm up before running actual tests, on each new IntegrationTestsClient singleton instance (normally, once per tests assembly).
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestRunInVirtualEnvironment">
+            <summary>
+            Env var name. <see cref="T:System.Boolean"/>.
+            Means that we will run tests in Virtual Machine
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestProcessorArchitecture">
+            <summary>
+            <para>Env var name. <see cref="T:System.String"/>.</para>
+            <para>Sets the CPU for the integration tests server process. Use constants from <see cref="T:JetBrains.Interop.WinApi.ProcessorArchitecture"/> enum. <see cref="F:JetBrains.Interop.WinApi.ProcessorArchitecture.PROCESSOR_ARCHITECTURE_UNKNOWN"/> means “same as the current runtime”.</para>
+            <para>In case of a VS run, must be either not defined, or <see cref="F:JetBrains.Interop.WinApi.ProcessorArchitecture.PROCESSOR_ARCHITECTURE_INTEL"/>, or <see cref="F:JetBrains.Interop.WinApi.ProcessorArchitecture.PROCESSOR_ARCHITECTURE_UNKNOWN"/> if the current process is 32-bit.</para>
+            <para>In case of a standalone run, MUST be defined to either <see cref="F:JetBrains.Interop.WinApi.ProcessorArchitecture.PROCESSOR_ARCHITECTURE_INTEL"/>, <see cref="F:JetBrains.Interop.WinApi.ProcessorArchitecture.PROCESSOR_ARCHITECTURE_AMD64"/>, or <see cref="F:JetBrains.Interop.WinApi.ProcessorArchitecture.PROCESSOR_ARCHITECTURE_UNKNOWN"/>.</para>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestVsVersionMajor">
+            <summary>
+            Obsolete. Replaced by <see cref="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestVsHive"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestVsHive">
+            <summary>
+            Is used to pass VS version through environment variable. "0.0" means a standalone app (not a VS).
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestRunInMainHive">
+            <summary>
+            Env var name. <see cref="T:System.Boolean"/>.
+            Means that we install ReSh in main hive and run tests for it
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestRunOnSingleMachine">
+            <summary>
+            Env var name. <see cref="T:System.Boolean"/>.
+            Means that tests will be running on single machine (on an agent)
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestCheckoutDir">
+            <summary>
+            Env var name. <see cref="T:System.String"/>.
+            Checkout directory
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.IntegrationTestsControlVariables.EnvInTestInstallDir">
+            <summary>
+            Env var name. <see cref="T:System.String"/>.
+            Install directory
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Build.Nunit.IInvokeNunit">
+            <summary>
+            Can invoke NUnit tests on a certain DLL.
+            Implementations exist using a physical local NUnit runner or a TC build runner (if running in a TC agent as a part of the build).
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Build.Nunit.InvokeNunitRunner">
+            <summary>
+              <para>Invokes the original NUnit runner.</para>
+              <para>The runner itself is fetched from Nuget.</para>
+              <para>Starting with NUnit v3, the original runner has built-in support for TeamCity status reporting, so no switching implementation is needed.</para>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.Nunit.InvokeNunitRunner.ourNunitRunnerPackagesSet">
+            <summary>
+            The package set which should be restored, in the std Packages directory layout, NON-DEEP (deps not traversed), for the tool to run.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Build.Nunit.NunitRunUnderDebugger">
+            <summary>
+            Specifies additional parameters when running NUnit tests (with <see cref="T:JetBrains.TestFramework.Build.Nunit.IInvokeNunit" />) under a debugger which would report any second-chance failures to the logs.
+            To enable the mode in the first place, set <see cref="T:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode" /> to <see cref="F:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode.Mode.SelfDebug" />.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.Nunit.NunitRunUnderDebugger.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.Nunit.NunitRunUnderDebugger.DirForLogsIfEnabled">
+            <summary>
+            If <see cref="T:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode" /> is set to <see cref="F:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode.Mode.SelfDebug" />, allows to specify tje dir where to place logs.
+            NULL for OFF.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.Nunit.NunitRunUnderDebugger.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode">
+            <summary>
+            Attaches special perks to running tests, like wrap with DMU runner, wrap with AE Loader, etc.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode.Mode.Direct">
+            <summary>
+            Just run the regular way with NUnit or whatever.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode.Mode.SelfDebug">
+            <summary>
+            Attaches a debugger to the running Unit Testing process so that it caught any second-chance exceptions and wrote exception info and fault stacks automatically.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode.Mode.DotMemoryUnit">
+            <summary>
+            Run wrapped into the DotMemory Unit runner.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.Nunit.UnitTestRunMode.Mode.AutoElevation">
+            <summary>
+            Run wrapped with AE Loaded for elevation of the tests process on the build agent.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Build.UnitTestDegreeOfParallelism">
+            <summary>
+            Determines how many NUnit processes can be spawned in parallel.
+            The default is 1.
+            Format: <c>1</c>, <c>2</c>, <c>3</c> — explicit number of max parallel processes.
+            Format: <c>x1</c>, <c>x2</c>, <c>x.5</c> — a factor of the machine processor count.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.UnitTestingTasks.RunUnitTestsAsync(JetBrains.Lifetimes.Lifetime,JetBrains.Application.BuildScript.Solution.AllAssembliesOnEverything,JetBrains.Application.BuildScript.InputPackage[],JetBrains.Application.BuildScript.Testing.TestDataHomeDirArtifact,JetBrains.TestFramework.Build.Nunit.IInvokeNunit,JetBrains.Application.Components.Optional{JetBrains.Application.BuildScript.Testing.UnitTestPlatform},JetBrains.Application.Components.Optional{JetBrains.Application.BuildScript.Testing.UnitTestFilter},JetBrains.Application.Components.Optional{JetBrains.Application.BuildScript.Testing.UnitTestRunnerParameters},JetBrains.Application.Components.Optional{JetBrains.TestFramework.Build.UnitTestingTasks.UnitTestingExtractedFileConflicts},JetBrains.TestFramework.Build.UnitTestDegreeOfParallelism,JetBrains.Application.Components.Optional{JetBrains.TestFramework.Build.Nunit.UnitTestRunMode},JetBrains.Application.Components.Optional{JetBrains.TestFramework.Build.Nunit.NunitRunUnderDebugger},JetBrains.Build.Running.IBuildTaskHost,JetBrains.Util.Storage.Packages.IJetNugetPackageManager,JetBrains.Util.ILogger)">
+            <summary>
+            The entry method, runs all tests, async.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.UnitTestingTasks.PrepareSubplatformAsync(JetBrains.Lifetimes.Lifetime,JetBrains.Application.BuildScript.Solution.Subplatform,JetBrains.Application.BuildScript.InputPackage[],JetBrains.Application.Components.Optional{JetBrains.TestFramework.Build.UnitTestingTasks.UnitTestingExtractedFileConflicts},JetBrains.Build.Running.IBuildTaskHost,JetBrains.Util.ILogger)">
+            <summary>
+            Enums subplatform DLLs, prepares for realizing subplatform stuff on disk to run tests on it.
+            Done once before running any dll of the subplatform.
+            Should be cheap to call even if nothing is tested for this sub, because all the real work (like making a folder) is delayed until smb triggers the lazy workdir.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.UnitTestingTasks.RunSingleAssemblyInSubplatformAsync(JetBrains.Lifetimes.Lifetime,JetBrains.Metadata.Utils.IAssemblyItem,JetBrains.Application.BuildScript.Solution.Subplatform,JetBrains.Application.BuildScript.Testing.UnitTestRunnerParameters.UnitTestRunnerParametersForSingleRun,JetBrains.TestFramework.Build.Nunit.UnitTestRunMode,JetBrains.Application.Components.Optional{JetBrains.TestFramework.Build.Nunit.NunitRunUnderDebugger},JetBrains.TestFramework.Build.UnitTestingTasks.UnitTestPreparedFolder,JetBrains.Application.BuildScript.Testing.TestDataHomeDirArtifact,System.Text.RegularExpressions.Regex,JetBrains.Build.Running.IBuildTaskHost,JetBrains.TestFramework.Build.Nunit.IInvokeNunit,JetBrains.Application.BuildScript.Testing.TestsFilter,JetBrains.TestFramework.Build.UnitTestingTasks.ConfigurationsVariation,JetBrains.Util.AsyncLazy{JetBrains.Application.BuildScript.Helpers.DebuggerHelpers.FinalizeDebuggerStartInfoDelegate},JetBrains.Util.ILogger)">
+            <summary>
+            The most specific method: per-subplatform, per single parameters run, and per single DLL in the subplatform.
+            Finally, checks if there're filters excluding this DLL, and if not, runs it.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.UnitTestingTasks.RunSubplatformOnParametersAsync(JetBrains.Lifetimes.Lifetime,JetBrains.Application.BuildScript.Solution.Subplatform,JetBrains.Application.BuildScript.Testing.UnitTestRunnerParameters.UnitTestRunnerParametersForSingleRun,JetBrains.TestFramework.Build.Nunit.UnitTestRunMode,JetBrains.Application.Components.Optional{JetBrains.TestFramework.Build.Nunit.NunitRunUnderDebugger},JetBrains.TestFramework.Build.UnitTestingTasks.UnitTestPreparedFolder,JetBrains.Build.Running.IBuildTaskHost,JetBrains.Application.BuildScript.Testing.TestDataHomeDirArtifact,JetBrains.TestFramework.Build.Nunit.IInvokeNunit,JetBrains.TestFramework.Build.UnitTestingTasks.ConfigurationsVariation,JetBrains.Util.AsyncLazy{JetBrains.Application.BuildScript.Helpers.DebuggerHelpers.FinalizeDebuggerStartInfoDelegate},JetBrains.Util.Threading.Tasks.TaskSemaphore,JetBrains.Util.ILogger)">
+            <summary>
+            Per subplatform, per the set of parameters for single run <see cref="T:JetBrains.Application.BuildScript.Testing.UnitTestRunnerParameters.UnitTestRunnerParametersForSingleRun" />. Runs all DLLs of the subplatform.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Build.UnitTestingTasks.UnitTestingExtractedFileConflicts.IgnoreFilePathRegex">
+            <summary>
+            Defines the regex for relative file paths (in the extraction folder) of the files whose conflicts are to be ignored upon extraction.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Build.UnitTestingTasks.UnitTestingExtractedFileConflicts.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.TestFramework.ChangeSettingsTemporarilyCore">
+            <summary>
+              <para>Adds a temporary high-priority layer which intercepts all of the writes.</para>
+              <para>It has no availability condition, so it will be available with every binding with the highest priority — for reading values in features.</para>
+              <para>For writing, if you do the default Smart binding, the default smart-write strategy will cause the value to sink to the per-machine layer, and such a write won't be temporary.</para>
+              <para>To do a temporary write that will be revoked upon termination, use <see cref="F:JetBrains.TestFramework.ChangeSettingsTemporarilyCore.BoundStore" /> (or do <see cref="M:JetBrains.Application.Settings.ContextRange.ManuallyRestrictWritesToOneContext(System.Func{JetBrains.Lifetimes.Lifetime,JetBrains.Application.DataContext.DataContexts,JetBrains.Application.DataContext.IDataContext})" />).</para>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.ChangeSettingsTemporarilyCore.BoundStore">
+            <summary>
+              <para>The settings store bound to an application-wide context, with writes restricted to the temporary layer only.</para>
+              <para>Reads would go as if in <see cref="M:JetBrains.Application.Settings.ContextRange.Smart(System.Func{JetBrains.Lifetimes.Lifetime,JetBrains.Application.DataContext.DataContexts,JetBrains.Application.DataContext.IDataContext})" /> context, which now includes the temp layer. In environments with Project Model, this includes Solution settings.</para>
+              <para>The live context is bound for the lifetime of this component.</para>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.ChangeSettingsTemporarilyCore.Mount">
+            <summary>
+            The mounting point of the layer created.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.ChangeSettingsTemporarilyCore.Storage">
+            <summary>
+            The physical storage of the layer created.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.ProgramSourceFiles">
+            <summary>
+              Supported only absolute paths
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.ReferencedAssemblyFiles">
+            <summary>
+              Supported absolute pathes and library names without directory.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.NetmoduleFiles">
+            <summary>
+              Supported absolute paths and netmodule file names without directory.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.EmbeddedResources">
+            <summary>
+              Supported only absolute paths.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.CopyFiles">
+            <summary>
+              Supported only absolute pathes.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.LangVersion">
+            <summary>
+            Available versions depend on CompilerVersion
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.CustomAssemblyName">
+            <summary>
+              Assembly name without extension.
+              Empty or null means that name of the first element of <see cref="P:JetBrains.TestFramework.Compiler.BuildConfiguration.ProgramSourceFiles" /> will be used.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.Win32Icon">
+            <summary>
+              Supported only absolute path.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.Win32Resource">
+            <summary>
+              Supported only absolute path.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.Win32Manifest">
+            <summary>
+              Supported only absolute path.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Compiler.BuildConfiguration.ApplicationConfig">
+            <summary>
+              Supported only absolute path.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.FileSystemTrackerTestImpl.#ctor(JetBrains.Lifetimes.Lifetime,JetBrains.Application.SynchronizationPoint.SynchronizationPoints,JetBrains.Application.Threading.IThreading)">
+            <summary>
+            Container ctor.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.FileSystemTrackerTestImpl.#ctor(JetBrains.Lifetimes.Lifetime,System.Boolean,JetBrains.Application.FileSystemTracker.DirectoryRescanner.RescansScheduler)">
+            <summary>
+            Mocks ctor.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Components.Mode.AsyncBehaviorAllowed">
+            <summary>
+            Allows to temporary enable async behavior in tests, when async behavior is prohibited by default.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Components.Mode.LogToDebugStream">
+            <summary>
+            Logger => std debug stream (in tests).
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Components.Mode.WakeUpDispatcherThreadsPeriodically">
+            <summary>
+            For correct running in test mode, wake up secondary tests (waiting for Windows messages) from time to time so that they could eg shut down.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Components.PartCatalogsForTests">
+            <summary>
+            Extends <see cref="T:JetBrains.Application.BuildScript.Application.Catalogs.PartCatalogs" /> with helpers for supporting tests (that might be not so good for production use though).
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.PartCatalogsForTests.CreateIsolatedOnAssembliesAndRefAsm(JetBrains.Lifetimes.Lifetime,System.Reflection.Assembly[])">
+            <summary>
+            Creates a parts catalog over a few specific runtime assemblies. Also resolves into RefAsms. Does not let resolve leak into the real GAC.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.PartCatalogsForTests.CreateIsolatedOnTypesAndRefAsm(JetBrains.Lifetimes.Lifetime,System.Type[])">
+            <summary>
+            Creates a parts catalog over a few specific runtime types — for precision filtering of what gets consumed.
+            Only scans for cataloging their specific runtime assemblies. Also resolves into RefAsms. Does not let resolve leak into the real GAC.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.PartCatalogsForTests.CreateIsolatedOnTypesAndRefAsm(JetBrains.Lifetimes.Lifetime,System.Collections.Generic.IReadOnlyCollection{System.Type})">
+            <summary>
+            Creates a parts catalog over a few specific runtime types — for precision filtering of what gets consumed.
+            Only scans for cataloging their specific runtime assemblies. Also resolves into RefAsms. Does not let resolve leak into the real GAC.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.PartCatalogsForTests.CreateIsolatedOnTypesOnly(JetBrains.Lifetimes.Lifetime,System.Type[])">
+            <summary>
+            Creates a parts catalog over a few specific runtime types — for precision filtering of what gets consumed.
+            Only scans for cataloging their specific runtime assemblies. Does not let resolve leak into the real GAC, does not add RefAsms to resolve either.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.PartCatalogsForTests.CreateIsolatedOnTypesOnly(JetBrains.Lifetimes.Lifetime,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Creates a parts catalog over a few specific runtime types — for precision filtering of what gets consumed.
+            Only scans for cataloging their specific runtime assemblies. Does not let resolve leak into the real GAC, does not add RefAsms to resolve either.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.PartCatalogsForTests.CreateMasterBinderIsolatedOnAssembliesAndRefAsm(JetBrains.Lifetimes.Lifetime,System.Reflection.Assembly[])">
+            <summary>
+            Creates a binder suitable for loading stuff from the given assemblies, assuming their layout on disk.
+            Assemblies available for resolve:
+            1) Any assemblies in the same folders as the given assemblies.
+            2) Any assemblies from RefAsm nuget of the currently used version.
+            This MUST NOT depend on the environment of the current machine.
+            The set of DLLs in the dir might be a bit leaky in the local scenario (as we do not have Shell here yet to make a strict set), but on the server only involved nupkgs are extarcted.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.PartCatalogsForTests.GetReferenceAssembliesForBinder">
+            <summary>
+            When tests want to resolve GAC/RefAsm assemblies, this loads the list from RefAsm Nuget, suitable for resolver.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:JetBrains.TestFramework.Components.Settings.SuppressDiskStorages">
+            <summary>
+            Prevents the Settings Store running in the test environment from reading the nondefault user settings and from saving whatever has been modified by the tests to disk.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.Settings.TestSettingsKeyA.AssertKeyEntries(JetBrains.Application.Settings.SettingsKey)">
+            <summary>
+            The test checks reading the schema.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.Settings.TestSettingsKeyA.AssessMapPerformanceInt(JetBrains.Application.Settings.ISettingsStore,JetBrains.Application.Settings.Storage.ISettingsStorage)">
+            <summary>
+            Test set-get in store vs. plain dictionary.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.Settings.TestSettingsKeyA.AssessMapPerformanceString(JetBrains.Application.Settings.ISettingsStore,JetBrains.Application.Settings.Storage.ISettingsStorage)">
+            <summary>
+            Test set-get in store vs. plain dictionary.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Components.TearDownComponents">
+            <summary>
+            When shell is shutting down, calls teardown on all components.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.TearDownComponents.TearDownGuarded">
+            <summary>
+            Calls teardown on all teardown components. Call from guarded context only.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.TearDownComponents.FixtureTearDownGuarded">
+            <summary>
+            Calls teardown on all teardown components. Call from guarded context only.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.TearDownComponents.TearDownUnguarded">
+            <summary>
+            Calls teardown on all teardown components. Call from unguarded context only.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Components.TearDownComponents.FixtureTearDownUnguarded">
+            <summary>
+            Calls teardown on all teardown components. Call from unguarded context only.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Components.TestImplHostCulture">
+            <summary>
+            Test must use invariant culture consistently.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.ExtensionTestEnvironmentAssembly`1">
+            <summary>
+            Must be in the namespace which contains all the tests needing the shell.
+            This class creates the test environment before running tests in the namespaces under it, and destroys it after all the tests.
+            </summary>
+            <remarks>Use for extension testing</remarks>
+        </member>
+        <member name="T:JetBrains.TestFramework.PlatformTestEnvironmentAssembly`1">
+            <summary>
+            Must be in the global namespace.
+            This class creates the test environment before running tests in this assembly, and destroys it after all the tests.
+            Plant a class in each assembly with platform tests (unless they're really unit tests), inherited from this one.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.WindowsOnlyTestAttribute">
+            <summary>
+            WindowsOnlyTestAttribute is used to mark a test fixture or an individual method as applying to a Windows platform only.
+            </summary>
+            //todo ok change?
+        </member>
+        <member name="T:JetBrains.TestFramework.UnixOnlyTestAttribute">
+            <summary>
+            UnixOnlyTestAttribute is used to mark a test fixture or an individual method as applying to a Unix-like platform only.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.IgnoreMonoAttribute">
+            <summary>
+            IgnoreMonoAttribute is used to mark a test fixture or an individual method as applying to a no Mono runtime only.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Settings.ManuallyControlledSettingsChangeDispatch">
+            <summary>
+            Test-centric implementation to provide deterministic processing of settings changes.
+            Prevents the settings change dispatch's grouping event from running its processing at scheduled moments, does said processing upon explicit request from caller.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Settings.ManuallyControlledSettingsChangeDispatch.IsManualGroupingMode">
+            <summary>
+            Instead of letting gevent do its magic, expects you to manually call the <see cref="M:JetBrains.TestFramework.Settings.ManuallyControlledSettingsChangeDispatch.CommitPendingChanges" />.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Settings.ManuallyControlledSettingsChangeDispatch.CommitPendingChanges">
+            <summary>
+            Forces pending changes in the settings to be processed immediately.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Settings.ManuallyControlledSettingsChangeDispatch.CommitPendingChangesAsync">
+            <summary>
+            Forces pending changes in the settings to be processed immediately.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Settings.ManuallyControlledSettingsChangeDispatch.GroupingEventRequestDispatch">
+            <summary>
+            Prevents the gevent from being triggered, because it causes
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.DotNetSdkSource.Options.UseExactDotNetSdkVersion">
+            <summary>
+              Use the exact .NET SDK version, not the latest stable version.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.DotNetSdkSource.Options.Prefer32Bit">
+            <summary>
+              Use 32-bit .NET SDK if possible.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.TestCompiler.DotNetTestCodeCompiler.GetDotNetSdk(JetBrains.TestFramework.TestCompiler.DotNetSdkSource)">
+            <summary>
+              Download and extract specific .NET SDK in the permanent cache directory.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.TestCompiler.DotNetTestCodeCompiler.GetMonoRuntime(JetBrains.TestFramework.TestCompiler.MonoRuntimeSource)">
+            <summary>
+              Download and extract specific Mono runtime in the permanent cache directory.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.TestCompiler.DotNetTestCodeCompiler.Compile(JetBrains.Util.FileSystemPath,JetBrains.TestFramework.TestCompiler.TestTargetFramework,JetBrains.Interop.WinApi.ProcessorArchitecture,JetBrains.Build.Helpers.Msbuild.InvokeMsbuild.WellKnownConfiguration,System.Boolean,System.Boolean)">
+            <summary>
+              Compile solution or project and get the output directory as the result.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.TestCompiler.DotNetTestCodeCompiler.Compile(JetBrains.TestFramework.TestCompiler.DotNetSdkSource,JetBrains.TestFramework.TestCompiler.MonoRuntimeSource,JetBrains.Util.FileSystemPath,JetBrains.TestFramework.TestCompiler.TestTargetFramework,JetBrains.Interop.WinApi.ProcessorArchitecture,JetBrains.Build.Helpers.Msbuild.InvokeMsbuild.WellKnownConfiguration,System.Boolean,System.Boolean)">
+            <summary>
+              Compile solution or project and get the output directory as the result.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework20">
+            <summary>
+              End of Microsoft support: 2011-04-12.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework30">
+            <summary>
+              End of Microsoft support: 2011-04-12.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework35">
+            <summary>
+              End of Microsoft support: 2028-10-10.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework40">
+            <summary>
+              End of Microsoft support: 2016-01-12.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH</i> environment variable, but only one for both 32-bit and 64-bit processes.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework45">
+            <summary>
+              End of Microsoft support: 2016-01-12.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH</i> environment variable, but only one for both 32-bit and 64-bit processes.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework451">
+            <summary>
+              End of Microsoft support: 2016-01-12.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH</i> environment variable, but only one for both 32-bit and 64-bit processes.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework452">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH</i> environment variable, but only one for both 32-bit and 64-bit processes.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework46">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH</i> environment variable, but only one for both 32-bit and 64-bit processes.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework461">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH_32</i> / <i>COR_PROFILER_PATH_64</i> environment variables for specific 32-bit
+                  and 64-bit processes. The <i>COR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework462">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH_32</i> / <i>COR_PROFILER_PATH_64</i> environment variables for specific 32-bit
+                  and 64-bit processes. The <i>COR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework47">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH_32</i> / <i>COR_PROFILER_PATH_64</i> environment variables for specific 32-bit
+                  and 64-bit processes. The <i>COR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework471">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH_32</i> / <i>COR_PROFILER_PATH_64</i> environment variables for specific 32-bit
+                  and 64-bit processes. The <i>COR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework472">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH_32</i> / <i>COR_PROFILER_PATH_64</i> environment variables for specific 32-bit
+                  and 64-bit processes. The <i>COR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetFramework48">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>COR_PROFILER_PATH_32</i> / <i>COR_PROFILER_PATH_64</i> environment variables for specific 32-bit
+                  and 64-bit processes. The <i>COR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  Support attach with <i>ICLRProfiling::AttachProfiler()</i>.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetCore10">
+            <summary>
+              End of Microsoft support: 2019-06-27.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>CORECLR_PROFILER_PATH_32</i> / <i>CORECLR_PROFILER_PATH_64</i> environment variables for specific
+                  32-bit and 64-bit processes. The <i>CORECLR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  CoreCLR has its own copy of environment variables for managed code on Unix. Use <i>SetEnvironmentVariableW</i>
+                  export in <i>libcoreclr.so</i> / <i>libcoreclr.dylib</i> to modify it.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetCore11">
+            <summary>
+              End of Microsoft support: 2019-06-27.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>CORECLR_PROFILER_PATH_32</i> / <i>CORECLR_PROFILER_PATH_64</i> environment variables for specific
+                  32-bit and 64-bit processes. The <i>CORECLR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  CoreCLR has its own copy of environment variables for managed code on Unix. Use <i>SetEnvironmentVariableW</i>
+                  export in <i>libcoreclr.so</i> / <i>libcoreclr.dylib</i> to modify it.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetCore20">
+            <summary>
+              End of Microsoft support: 2018-10-01.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>CORECLR_PROFILER_PATH_32</i> / <i>CORECLR_PROFILER_PATH_64</i> environment variables for specific
+                  32-bit and 64-bit processes. The <i>CORECLR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  CoreCLR has its own copy of environment variables for managed code on Unix. Use <i>SetEnvironmentVariableW</i>
+                  export in <i>libcoreclr.so</i> / <i>libcoreclr.dylib</i> to modify it.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetCore21">
+            <summary>
+              LTS.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>CORECLR_PROFILER_PATH_32</i> / <i>CORECLR_PROFILER_PATH_64</i> environment variables for specific
+                  32-bit and 64-bit processes. The <i>CORECLR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  CoreCLR has its own copy of environment variables for managed code on Unix. Use <i>SetEnvironmentVariableW</i>
+                  export in <i>libcoreclr.so</i> / <i>libcoreclr.dylib</i> to modify it.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetCore22">
+            <summary>
+              End of Microsoft support: 2019-12-23.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>CORECLR_PROFILER_PATH_32</i> / <i>CORECLR_PROFILER_PATH_64</i> environment variables for specific
+                  32-bit and 64-bit processes. The <i>CORECLR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  CoreCLR has its own copy of environment variables for managed code on Unix. Use <i>SetEnvironmentVariableW</i>
+                  export in <i>libcoreclr.so</i> / <i>libcoreclr.dylib</i> to modify it.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetCore30">
+            <summary>
+              End of Microsoft support: 2020-03-03.
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>CORECLR_PROFILER_PATH_32</i> / <i>CORECLR_PROFILER_PATH_64</i> environment variables for specific
+                  32-bit and 64-bit processes. The <i>CORECLR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  Support attach with https://github.com/dotnet/diagnostics.
+                </item>
+                <item>
+                  No <i>SetEnvironmentVariableW</i> export. The dirty hack was implemented on Unix. We are parsing ELF / Mach-O
+                  files for getting symbols from <i>libcoreclr.so</i> / <i>libcoreclr.dylib</i>.
+                </item>
+                <item>
+                  <see cref="P:System.Environment.Version" /> is inconsistent with <i>ICorProfilerInfo3::GetRuntimeInformation()</i>.
+                  They return 3.0.0 and 4.0.30319 respectively. Has <i>ICorProfilerInfo10</i> for detection since 3.0.0-preview6.
+                  See https://youtrack.jetbrains.com/issue/PROF-857 and https://github.com/dotnet/coreclr/issues/22845 for details.
+                </item>
+                <item>
+                  Attach implemented in 3.0.0-preview4, but was completely redesigned in 3.0.0-preview6 and 3.0.0-preview7.
+                  Use <i>ICorProfilerInfo10</i> for detection. See https://youtrack.jetbrains.com/issue/PROF-893,
+                  https://youtrack.jetbrains.com/issue/PROF-874 and https://github.com/dotnet/coreclr/issues/16796
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.NetCore31">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support <i>CORECLR_PROFILER_PATH_32</i> / <i>CORECLR_PROFILER_PATH_64</i> environment variables for specific
+                  32-bit and 64-bit processes. The <i>CORECLR_PROFILER_PATH</i> environment variable is obsolete.
+                </item>
+                <item>
+                  Support attach with https://github.com/dotnet/diagnostics.
+                </item>
+                <item>
+                  No <i>SetEnvironmentVariableW</i> export. Use <i>ICorProfilerInfo11</i> on Unix for fixing. See
+                  https://github.com/dotnet/coreclr/pull/27512 fro details.
+                </item>
+                <item>
+                  <see cref="P:System.Environment.Version" /> is inconsistent with <i>ICorProfilerInfo3::GetRuntimeInformation()</i>.
+                  They return 3.1.0 and 4.0.30319 respectively. Has <i>ICorProfilerInfo11</i> for detection since 3.1.0-preview3.
+                  See https://youtrack.jetbrains.com/issue/PROF-857 and https://github.com/dotnet/coreclr/issues/22845 for details.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFramework.Net50">
+            <summary>
+              Particular qualities:
+              <list type="number">
+                <item>
+                  Support attach with https://github.com/dotnet/diagnostics.
+                </item>
+              </list>
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFrameworkUtil.Flags.IgnoreExactDotNetSdkVersion">
+            <summary>
+              Always use the last stable .NET SDK instead because the exact version does not wok properly.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestCompiler.TestTargetFrameworkUtil.Flags.PreviewDotNetSdk">
+            <summary>
+              The preview of .NET SDK, should be ignored in last stable version calculation
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.TestEnvironmentAssembly`1">
+            <summary>
+            Must be in the namespace which contains all the tests needing the shell.
+            This class creates the test environment before running tests in the namespaces under it, and destroys it after all the tests.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.TestEnvironmentAssembly`1.IsBindingRedirectionEnabled">
+            <summary>
+            Override in assemblies which would like to use assemblies redirection for product assemblies.
+            Emulates behavior in VS. Useful for testing with plugins.
+            The default value  correlates with <see cref="P:JetBrains.TestFramework.TestEnvironmentAssembly`1.IsPerformOneTimeInitialization" />.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.TestEnvironmentAssembly`1.IsPerformOneTimeInitialization">
+            <summary>
+            Override in assemblies which would like to perform one time initialization.
+            One time initialization includes installing bundled plugins and etc.
+            The default is <c>False</c>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.TestEnvironmentAssembly`1.IsRunningTestsInInternalMode">
+            <summary>
+            Override in assemblies which would like to run tests in internal mode.
+            The default is <c>False</c>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.TestEnvironmentAssembly`1.IsRunningTestsWithAsyncBehaviorProhibited">
+            <summary>
+            Override in assemblies which would like to run tests with suppressed async calls like <see cref="!:JetDispatcher.BeginInvoke(JetBrains.Lifetimes.Lifetime,string,System.Action)" /> or <see cref="M:JetBrains.Threading.ReentrancyGuard.Queue(System.String,System.Action,JetBrains.Util.Threading.Tasks.TaskPriority)" />.
+            The default is <c>False</c>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestEnvironmentAssembly.RunningEnvironment">
+            <summary>
+            Can be used in base test only (in this assembly), and, well, in derived classes also.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.TestEnvironmentAssembly.myExceptionTrap">
+            <summary>
+              <para>Accumulates logger exceptions.</para>
+              <para>Throw them out when noone is to intercept them so that they got right to NUnit (eg in test teardown).</para>
+              <para>Must be turned off and nulled when the test-environment-assembly shuts down, otherwise it might interfere with running other tests.</para>
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.TestEnvironmentAssembly.IsPendingLoggedExceptions">
+            <summary>
+            Gets whether there were recorded exception (except gold difference) while running the shelled test, and they were not yet thrown out into the test runner
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.TestEnvironmentAssembly.ThrowLoggedExceptions">
+            <summary>
+            If the host is currently running, and there were exceptions trapped during within its run, throws these exceptions out.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.TestEnvironmentAssembly.WaitForStartedTestShell">
+            <summary>
+            After the <see cref="T:JetBrains.TestFramework.TestEnvironmentAssembly"/> setup has been completed (and before its teardown), waits for the actual Shell to start up and be ready as a component container, unless in the Async Prohibited mode (in which case it must be ready immediately).
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.UI.Tooltips.TestImplTooltipManagerComponent.TooltipShown">
+            <summary>
+            Fires when a test implementation mocks a shown tooltip.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.UI.Tooltips.TestImplTooltipManagerComponent.#ctor(JetBrains.Application.UI.Components.IUIApplication)">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.TestDirectoryRescannerSynchronous">
+            <summary>
+            Executes synchronously by default, allows to suspend execution.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestDistributedCacheEx.GetRemoteCacheUrl(JetBrains.TestFramework.BaseTestNoShell)">
+            <summary>
+            Gets an URI for using with remote version of the Distributed Cache in tests.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.LineByLineDiff">
+            <summary>
+            This Class implements the Difference Algorithm published in
+            "An O(ND) Difference Algorithm and its Variations" by Eugene Myers
+            Algorithmica Vol. 1 No. 2, 1986, p 251.  
+            
+            There are many C, Java, Lisp implementations public available but they all seem to come
+            from the same source (diffutils) that is under the (unfree) GNU public License
+            and cannot be reused as a sourcecode for a commercial application.
+            There are very old C implementations that use other (worse) algorithms.
+            Microsoft also published sourcecode of a diff-tool (windiff) that uses some tree data.
+            Also, a direct transfer from a C source to C# is not easy because there is a lot of pointer
+            arithmetic in the typical C solutions and i need a managed solution.
+            These are the reasons why I implemented the original published algorithm from the scratch and
+            make it avaliable without the GNU license limitations.
+            I do not need a high performance diff tool because it is used only sometimes.
+            I will do some performace tweaking when needed.
+            
+            The algorithm itself is comparing 2 arrays of numbers so when comparing 2 text documents
+            each line is converted into a (hash) number. See DiffText(). 
+            
+            Some chages to the original algorithm:
+            The original algorithm was described using a recursive approach and comparing zero indexed arrays.
+            Extracting sub-arrays and rejoining them is very performance and memory intensive so the same
+            (readonly) data arrays are passed arround together with their lower and upper bounds.
+            This circumstance makes the LCS and SMS functions more complicate.
+            I added some code to the LCS function to get a fast response on sub-arrays that are identical,
+            completely deleted or inserted.
+            
+            The result from a comparisation is stored in 2 arrays that flag for modified (deleted or inserted)
+            lines in the 2 data arrays. These bits are then analysed to produce a array of Item objects.
+            
+            Further possible optimizations:
+            (first rule: don't do it; second: don't do it yet)
+            The arrays DataA and DataB are passed as parameters, but are never changed after the creation
+            so they can be members of the class to avoid the paramter overhead.
+            In SMS is a lot of boundary arithmetic in the for-D and for-k loops that can be done by increment
+            and decrement of local variables.
+            The DownVector and UpVector arrays are alywas created and destroyed each time the SMS gets called.
+            It is possible to reuse tehm when transfering them to members of the class.
+            See TODO: hints.
+            
+            diff.cs: A port of the algorythm to C#
+            Copyright (c) by Matthias Hertel, http://www.mathertel.de
+            This work is licensed under a BSD style license. See http://www.mathertel.de/License.aspx
+            
+            Changes:
+            2002.09.20 There was a "hang" in some situations.
+            Now I undestand a little bit more of the SMS algorithm. 
+            There have been overlapping boxes; that where analyzed partial differently.
+            One return-point is enough.
+            A assertion was added in CreateDiffs when in debug-mode, that counts the number of equal (no modified) lines in both arrays.
+            They must be identical.
+            
+            2003.02.07 Out of bounds error in the Up/Down vector arrays in some situations.
+            The two vetors are now accessed using different offsets that are adjusted using the start k-Line. 
+            A test case is added. 
+            
+            2006.03.05 Some documentation and a direct Diff entry point.
+            
+            2006.03.08 Refactored the API to static methods on the Diff class to make usage simpler.
+            2006.03.10 using the standard Debug class for self-test now.
+                       compile with: csc /target:exe /out:diffTest.exe /d:DEBUG /d:TRACE /d:SELFTEST Diff.cs
+            2007.01.06 license agreement changed to a BSD style license.
+            2007.06.03 added the Optimize method.
+            2007.09.23 UpVector and DownVector optimization by Jan Stoklasa ().
+            2008.05.31 Adjusted the testing code that failed because of the Optimize method (not a bug in the diff algorithm).
+            2008.10.08 Fixing a test case and adding a new test case.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.LineByLineDiff.Item">
+            <summary>details of one difference.</summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.LineByLineDiff.Item.StartA">
+            <summary>Start Line number in Data A.</summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.LineByLineDiff.Item.StartB">
+            <summary>Start Line number in Data B.</summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.LineByLineDiff.Item.deletedA">
+            <summary>Number of changes in Data A.</summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.LineByLineDiff.Item.insertedB">
+            <summary>Number of changes in Data B.</summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.LineByLineDiff.SMSRD">
+            <summary>
+            Shortest Middle Snake Return Data
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.LineByLineDiff.DiffText(System.String,System.String)">
+            <summary>
+            Find the difference in 2 texts, comparing by textlines.
+            </summary>
+            <param name="TextA">A-version of the text (usualy the old one)</param>
+            <param name="TextB">B-version of the text (usualy the new one)</param>
+            <returns>Returns a array of Items that describe the differences.</returns>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.LineByLineDiff.DiffText(System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Find the difference in 2 text documents, comparing by textlines.
+            The algorithm itself is comparing 2 arrays of numbers so when comparing 2 text documents
+            each line is converted into a (hash) number. This hash-value is computed by storing all
+            textlines into a common hashtable so i can find dublicates in there, and generating a 
+            new number each time a new textline is inserted.
+            </summary>
+            <param name="TextA">A-version of the text (usualy the old one)</param>
+            <param name="TextB">B-version of the text (usualy the new one)</param>
+            <param name="trimSpace">When set to true, all leading and trailing whitespace characters are stripped out before the comparation is done.</param>
+            <param name="ignoreSpace">When set to true, all whitespace characters are converted to a single space character before the comparation is done.</param>
+            <param name="ignoreCase">When set to true, all characters are converted to their lowercase equivivalence before the comparation is done.</param>
+            <returns>Returns a array of Items that describe the differences.</returns>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.LineByLineDiff.Optimize(JetBrains.TestFramework.Utils.DiffData)">
+            <summary>
+            If a sequence of modified lines starts with a line that contains the same content
+            as the line that appends the changes, the difference sequence is modified so that the
+            appended line and not the starting line is marked as modified.
+            This leads to more readable diff sequences when comparing text files.
+            </summary>
+            <param name="Data">A Diff data buffer containing the identified changes.</param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.LineByLineDiff.DiffInt(System.Int32[],System.Int32[])">
+            <summary>
+            Find the difference in 2 arrays of integers.
+            </summary>
+            <param name="ArrayA">A-version of the numbers (usualy the old one)</param>
+            <param name="ArrayB">B-version of the numbers (usualy the new one)</param>
+            <returns>Returns a array of Items that describe the differences.</returns>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.LineByLineDiff.DiffCodes(System.String,System.Collections.Generic.IDictionary{System.String,System.Int32},System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            This function converts all textlines of the text into unique numbers for every unique textline
+            so further work can work only with simple numbers.
+            </summary>
+            <param name="aText">the input text</param>
+            <param name="h">This extern initialized hashtable is used for storing all ever used textlines.</param>
+            <param name="trimSpace">ignore leading and trailing space characters</param>
+            <returns>a array of integers.</returns>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.LineByLineDiff.SMS(JetBrains.TestFramework.Utils.DiffData,System.Int32,System.Int32,JetBrains.TestFramework.Utils.DiffData,System.Int32,System.Int32,System.Int32[],System.Int32[])">
+            <summary>
+            This is the algorithm to find the Shortest Middle Snake (SMS).
+            </summary>
+            <param name="DataA">sequence A</param>
+            <param name="LowerA">lower bound of the actual range in DataA</param>
+            <param name="UpperA">upper bound of the actual range in DataA (exclusive)</param>
+            <param name="DataB">sequence B</param>
+            <param name="LowerB">lower bound of the actual range in DataB</param>
+            <param name="UpperB">upper bound of the actual range in DataB (exclusive)</param>
+            <param name="DownVector">a vector for the (0,0) to (x,y) search. Passed as a parameter for speed reasons.</param>
+            <param name="UpVector">a vector for the (u,v) to (N,M) search. Passed as a parameter for speed reasons.</param>
+            <returns>a MiddleSnakeData record containing x,y and u,v</returns>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.LineByLineDiff.LCS(JetBrains.TestFramework.Utils.DiffData,System.Int32,System.Int32,JetBrains.TestFramework.Utils.DiffData,System.Int32,System.Int32,System.Int32[],System.Int32[])">
+            <summary>
+            This is the divide-and-conquer implementation of the longes common-subsequence (LCS) 
+            algorithm.
+            The published algorithm passes recursively parts of the A and B sequences.
+            To avoid copying these arrays the lower and upper bounds are passed while the sequences stay constant.
+            </summary>
+            <param name="DataA">sequence A</param>
+            <param name="LowerA">lower bound of the actual range in DataA</param>
+            <param name="UpperA">upper bound of the actual range in DataA (exclusive)</param>
+            <param name="DataB">sequence B</param>
+            <param name="LowerB">lower bound of the actual range in DataB</param>
+            <param name="UpperB">upper bound of the actual range in DataB (exclusive)</param>
+            <param name="DownVector">a vector for the (0,0) to (x,y) search. Passed as a parameter for speed reasons.</param>
+            <param name="UpVector">a vector for the (u,v) to (N,M) search. Passed as a parameter for speed reasons.</param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.LineByLineDiff.CreateDiffs(JetBrains.TestFramework.Utils.DiffData,JetBrains.TestFramework.Utils.DiffData)">
+            <summary>Scan the tables of which lines are inserted and deleted,
+            producing an edit script in forward order.  
+            </summary>
+            dynamic array
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.DiffData">
+            <summary>Data on one input file being compared.  
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.DiffData.Length">
+            <summary>Number of elements (lines).</summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.DiffData.data">
+            <summary>Buffer of numbers that will be compared.</summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.DiffData.modified">
+            <summary>
+            Array of booleans that flag for modified data.
+            This is the result of the diff.
+            This means deletedA in the first Data or inserted in the second Data.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.DiffData.#ctor(System.Int32[])">
+            <summary>
+            Initialize the Diff-Data buffer.
+            </summary>
+            <param name="initData">reference to the buffer</param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.SettingsTestHelpers.CalculateTypesForPartCatalogWithSettingsKeys(System.Type[])">
+            <summary>
+            A helper for <see cref="M:JetBrains.TestFramework.Utils.SettingsTestHelpers.CreateCatalogWithSettingsKeys(JetBrains.Lifetimes.Lifetime,System.Type[])" /> which adds all dependent types for creating a minimal (but working) part catalog out of them.
+            </summary>
+            <param name="keyclasses"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.SettingsTestHelpers.CreateCatalogWithSettingsKey``1(JetBrains.Lifetimes.Lifetime)">
+            <summary>
+            If you'd like to load one specific key into the settings schema, create a catalog with just these keys and their parent keys up to root with this method.
+            </summary>
+            <param name="lifetime"></param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.SettingsTestHelpers.CreateCatalogWithSettingsKeys(JetBrains.Lifetimes.Lifetime,System.Type[])">
+            <summary>
+            If you'd like to load a few specific keys into the settings schema, create a catalog with just these keys and their parent keys up to root with this method.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestDataInNugets.GetDataPackage(JetBrains.TestFramework.BaseTestNoShell,JetBrains.Util.Storage.Packages.JetPackageIdentity)">
+            <summary>
+            Retrieves a Nuget package with test data.
+            The package is downloaded from the separate Nuget source with test data packages with all appropriate caching, and made available locally.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestDataInNugets.GetDataPackage(JetBrains.Util.Storage.Packages.JetPackageIdentity,JetBrains.Util.FileSystemPath)">
+            <summary>
+            Retrieves a Nuget package with test data.
+            The package is downloaded from the separate Nuget source with test data packages with all appropriate caching, and made available locally.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestDataInNugets.GetDataPackage(JetBrains.TestFramework.BaseTestNoShell,System.String,System.String)">
+            <summary>
+            Retrieves a Nuget package with test data.
+            The package is downloaded from the separate Nuget source with test data packages with all appropriate caching, and made available locally.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.TestDataInNugets.DataPackage">
+            <summary>
+            Lazy-loader of the requested package.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Utils.TestDataInNugets.DataPackage.LocallyExpandedDir">
+            <summary>
+            Directory into which all package files are expanded, under their raw part paths (not the effective paths) — so you'll have to look for <c>lib/Net/file.dll</c> or <c>DotFiles/file.dll</c> rather than just <c>file.dll</c>.
+            The root will have the extra file, package file itself.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Utils.TestDataInNugets.DataPackage.PackageFile">
+            <summary>
+            Package file content.
+            </summary>
+        </member>
+        <member name="P:JetBrains.TestFramework.Utils.TestDataInNugets.DataPackage.PackageObject">
+            <summary>
+            Nuget package object (opened over the expanded files into the local dir).
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestDataInNugets.TestDataNuspecRestore(JetBrains.TestFramework.BaseTestNoShell)">
+            <summary>
+              <para>Treats the test data directory which could have some of its files taken out to Nuget. </para>
+              <para>With non-intest, the files are expected to be in the test data directory, so the Nuget has to be retrieved and the files extracted to the test data directory.</para>
+              <para>By convention, such act of replacing SCC files with a Nuget is marked with the <c>TestData.Nuspec</c> file, which also tells the exact ID and Version of the Nuget package — from the spec.</para>
+              <para>The Nuget package is to be extracted AS IS into the directory which has the <c>TestData.Nuspec</c> file.</para>
+              <para>Also by convention, the nuget files are in the <c>TestData.Generated.Dir</c> subfolder (this way they're invisible to SCC).</para>
+              <para>This allows the nuget to be easily replacable with the local files, say, for debug.</para>
+              <para>When the test is being authored, place the test data and golds in the <c>TestData.Generated.Dir</c> subfolder. When ready, create a <c>TestData.Nuspec</c>, upload the package, and delete the files — the test should work just as before, now via nuget. To debug the test, edit the files it extracts, and then update the nuspec version and upload the new package when done. Don't forget to delete the files and check.</para>
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestDataInNugets.TestDataNuspecRestore_Spec_WriteCmd(JetBrains.Util.FileSystemPath)">
+            <summary>
+            Write the helper batch file which allows to upload the updated package
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestDataInNugets.FindNugetConfigForTest(JetBrains.TestFramework.BaseTestNoShell)">
+            <summary>
+            For a test, looks up a nuget config file to be used for nuget packages in the test.
+            Searches <c>NuGet.Config</c> in the test data directory and its parents, up to (exclusively) the Product Home Dir.
+            The first met (closest to the test data dir) file wins, no combining with uppers for predictability (because server tests might use different sparse checkout and missing an upper file would introduce subtle bugs).
+            Does not consider the Product Home Dir itself, because the file in it is for build-time nugets (dotnet-build feed) and not test-time nugets (dotnet-test-data feed).
+            Does not consider any directories above homedir for obvious reasons.
+            Does not consider per-user or machine-wide settings, for tests must not depend on environment.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.TestException">
+            <summary>
+            A special exception for the test purposes, to distinguish it in catch-blocks from any other ones.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestException.Expect``1(System.Action)">
+            <summary>
+            Executes the <paramref name="action" />, continues OK whenif <typeparamref name="TException" /> occurs, throws if it does not.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.TestLimits">
+            <summary>
+            Defines the constants that limit the number of iterations in random tests.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.TestLimits.MaxSize">
+            <summary>
+            Upper limit for random sizes.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.TestLimits.MinSize">
+            <summary>
+            Lower limit for random sizes.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.TestLimits.RandomTryIterations">
+            <summary>
+            Number of iterations to try different random setups for the same test.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.TestLimits.RichTextBlockLines">
+            <summary>
+            Number of lines when testing rich text blocks.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.TestLimits.StringLength">
+            <summary>
+            Length limit for the autogenerated strings.
+            The lower limit is usually <c>0</c>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestLimits.Repeat(System.Action)">
+            <summary>
+            Repeats the action <see cref="F:JetBrains.TestFramework.Utils.TestLimits.RandomTryIterations"/> times.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestLimits.RunInSta(System.Action)">
+            <summary>
+            Runs the given action on a STA thread.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.TestLogger">
+            <summary>
+            Allows to log a number of entries and then collect them.
+            Used by lazy test authors for injecting into the components under tests.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestLogger.Start">
+            <summary>
+            Enables and clears.
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.TestLoggerListener">
+            <summary>
+            In tests, allows all of the exceptions to be thrown out.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestLoggerListener.ThrowLoggedExceptions_ThrowSpecial(JetBrains.Util.CompoundException)">
+            <summary>
+            Special handling of test-specific exceptions.
+            </summary>
+            <param name="compound"></param>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.TestLoggerListener.TestWrapperException">
+            <summary>
+            Hack for NUnit which does not call exception for its ToString rendering — to include all of the exception data in output
+            </summary>
+        </member>
+        <member name="T:JetBrains.TestFramework.Utils.TestRandom">
+            <summary>
+            A random class that supports generating test objects in a deterministic way.
+            Not thread-safe.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.TestRandom.Seed">
+            <summary>
+            The default deterministic seed.
+            </summary>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.TestRandom.myNextStringBuilder">
+            <summary>
+            Worker instance for <see cref="M:JetBrains.TestFramework.Utils.TestRandom.NextString"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.#ctor(System.Int32)">
+            <summary>
+            Initializes the object and seeds it with the given number.
+            You can make the tests deterministic by always submitting the same number.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.#ctor">
+            <summary>
+            Initializes the object and seeds it with the constant <see cref="F:JetBrains.TestFramework.Utils.TestRandom.Seed"/>, so that the sequence were deterministic.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.CreateWithRandomSeed">
+            <summary>
+            Creates an instance initialized with a random seed, thus producing an unstable sequence.
+            Useless for tests, but handy for debug method dummies.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.GetRandomValues(System.Type,System.Int32)">
+            <summary>
+            Gets the random values for running a row of tests parameterized with <paramref name="type"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.GetRandomValues``1(System.Int32)">
+            <summary>
+            Gets the random values for running a row of tests parameterized with <typeparamref name="T"/>.
+            </summary>
+            <param name="randomTryIterations"></param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.GetRandomValues``1">
+            <summary>
+            Gets the random values for running a row of tests parameterized with <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.GetRandomValues_Nullable(System.Type,System.Int32)">
+            <summary>
+            Takes <see cref="M:JetBrains.TestFramework.Utils.TestRandom.GetRandomValues``1(System.Int32)"/> of the nullable's underlying type, then adds some <c>NULL</c>s.
+            </summary>
+            <param name="typeNullableUnderlying"></param>
+            <param name="randomTryIterations"></param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.GetRandomValues_Enum(System.Type,System.Int32)">
+            <summary>
+            Gets random values of the enum underlying type, then wraps into the enum.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextColor">
+            <summary>
+            Generates a random <see cref="T:System.Drawing.Color"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextRichText(System.Int32,System.Int32,System.String@)">
+            <summary>
+            Generates a random <see cref="T:JetBrains.UI.RichText.RichText"/> string consisting of multiple parts having different styles.
+            </summary>
+            <param name="min">Minimum length.</param>
+            <param name="max">Maximum length.</param>
+            <param name="text">Gives out the plain string containing the same characters as in the return value, in order to check their correspondence.</param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextRichText(System.Int32,System.Int32)">
+            <summary>
+            Generates a random <see cref="T:JetBrains.UI.RichText.RichText"/> string consisting of multiple parts having different styles.
+            </summary>
+            <param name="min">Minimum length.</param>
+            <param name="max">Maximum length.</param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextRichText(System.Int32)">
+            <summary>
+            Generates a random <see cref="T:JetBrains.UI.RichText.RichText"/> string consisting of multiple parts having different styles.
+            The minimum length is assumed to be zero (an empty string).
+            </summary>
+            <param name="max">Maximum length.</param>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextSize(System.Int32,System.Int32)">
+            <summary>
+            Generates a random <see cref="T:System.Drawing.Size"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextSizes(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Generates a random set of random <see cref="T:System.Drawing.Size"/> values.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextString(System.Int32,System.Int32)">
+            <summary>
+            Generates a random string that consists of ASCII characters (20h…7Fh).
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextStringAlphanumeric(System.Int32,System.Int32)">
+            <summary>
+            Generates a random string that consists of ASCII characters (20h…7Fh).
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextString">
+            <summary>
+            Generates a new string with the testlimits-defined length.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextStringAlphanumeric">
+            <summary>
+            Generates a new string with the testlimits-defined length. Uses alphanumeric chars only.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextTextStyle">
+            <summary>
+            Generates a random <see cref="T:JetBrains.UI.RichText.TextStyle"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.Repeat(System.Boolean,System.Action{System.String})">
+            <summary>
+            Runs multiple iterations on random strings, including border values.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.Repeat(System.Action{System.Int32})">
+            <summary>
+            Runs multiple iterations on random values, including border values.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.Repeat``1(System.Action{``0})">
+            <summary>
+            Runs multiple iterations on random values, including border values.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.RepeatPush``1(System.Func{``0,System.IDisposable})">
+            <summary>
+            Runs multiple iterations on random values, including border values.
+            First executes all of the actions, then disposes of their retvals in the reverse order.
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.NextChildren(System.Nullable{System.Int32})">
+            <summary>
+            Gets new randomly-initialized random objects (e.g. if you want to run several random processes in parallel and want them all to be deterministic no matter what).
+            </summary>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.Next(System.Int32,System.Int32)">
+            <summary>
+            Returns a random number within a specified range.
+            </summary>
+            
+            <returns>
+            A 32-bit signed integer greater than or equal to minValue and less than maxValue; that is, the range of return values includes minValue but not maxValue. If minValue equals maxValue, minValue is returned.
+            </returns>
+            
+            <param name="minValue">The inclusive lower bound of the random number returned. </param>
+            <param name="maxValue">The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue. </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">minValue is greater than maxValue. </exception><filterpriority>1</filterpriority>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.Next(System.Int32)">
+            <summary>
+            Returns a nonnegative random number less than the specified maximum.
+            </summary>
+            
+            <returns>
+            A 32-bit signed integer greater than or equal to zero, and less than maxValue; that is, the range of return values includes zero but not maxValue.
+            </returns>
+            
+            <param name="maxValue">The exclusive upper bound of the random number to be generated. maxValue must be greater than or equal to zero. </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">maxValue is less than zero. </exception><filterpriority>1</filterpriority>
+        </member>
+        <member name="M:JetBrains.TestFramework.Utils.TestRandom.Next01">
+            <summary>
+            Returns a random floating-point value in the <c>[0..1)</c> range.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:JetBrains.TestFramework.Utils.TestUtil.myLastDetectedTestDataPathBase">
+            <summary>
+            Per-assembly test data detection based on attrs and sub-platforms.
+            No need to keep more than one cached because assembly tests are always run contiguously.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,319 @@
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.exe.config
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.exe
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.pdb
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.Utilities.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Shell.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.TestPlatform.CoreUtilities.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.TestPlatform.PlatformAbstractions.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Newtonsoft.Json.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\NuGet.Frameworks.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Buffers.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Collections.Immutable.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Memory.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Reflection.Metadata.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Transformer.NET.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\WebActivatorEx.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Core.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.ComponentModel.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Util.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.BuildInterfaces.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Interop.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Metadata.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.Utilities.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Shell.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Newtonsoft.Json.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\NuGet.Frameworks.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Buffers.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Collections.Immutable.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Memory.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Reflection.Metadata.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\Transformer.NET.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Core.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.ComponentModel.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Util.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.BuildInterfaces.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Interop.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Metadata.xml
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.exe.config
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.csproj.CopyComplete
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.exe
+C:\Users\43249\Downloads\Programming Hobby\C# Work\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.pdb
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\MonsterBattle.exe.config
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\MonsterBattle.exe
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\MonsterBattle.pdb
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Ext.Net.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Ext.Net.Utilities.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Shell.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.TestPlatform.CoreUtilities.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.TestPlatform.PlatformAbstractions.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Newtonsoft.Json.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\NuGet.Frameworks.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Buffers.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Collections.Immutable.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Memory.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Reflection.Metadata.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Transformer.NET.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\WebActivatorEx.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Core.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.ComponentModel.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Util.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.BuildInterfaces.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Interop.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Metadata.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Ext.Net.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Ext.Net.Utilities.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Shell.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Newtonsoft.Json.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\NuGet.Frameworks.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Buffers.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Collections.Immutable.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Memory.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Reflection.Metadata.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\Transformer.NET.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Core.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.ComponentModel.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Util.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.BuildInterfaces.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Interop.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\JetBrains.Platform.Metadata.xml
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\obj\Debug\MonsterBattle.exe.config
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\obj\Debug\MonsterBattle.csproj.CoreCompileInputs.cache
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\obj\Debug\MonsterBattle.csproj.CopyComplete
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\obj\Debug\MonsterBattle.exe
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\obj\Debug\MonsterBattle.pdb
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\obj\Debug\MonsterBattle.csprojAssemblyReference.cache
+C:\Users\zdahir\Documents\Personal\C# Projects\MonsterBattleGame - Copy (2)\MonsterBattle\bin\Debug\System.ValueTuple.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.exe.config
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.exe
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.pdb
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.Utilities.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.TestPlatform.CoreUtilities.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.TestPlatform.PlatformAbstractions.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Newtonsoft.Json.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\NuGet.Frameworks.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Buffers.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Collections.Immutable.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Memory.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Reflection.Metadata.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Transformer.NET.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\WebActivatorEx.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.ValueTuple.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.Utilities.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Newtonsoft.Json.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\NuGet.Frameworks.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Buffers.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Collections.Immutable.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Memory.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Reflection.Metadata.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\Transformer.NET.xml
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.csprojAssemblyReference.cache
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.exe.config
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.csproj.CoreCompileInputs.cache
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.csproj.CopyComplete
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.exe
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.pdb
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.exe.manifest
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.application
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.exe.manifest
+C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.application
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.exe.config
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.exe.manifest
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.application
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.exe
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\MonsterBattle.pdb
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.Utilities.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Shell.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.TestPlatform.CoreUtilities.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.TestPlatform.PlatformAbstractions.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Newtonsoft.Json.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\NuGet.Frameworks.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Buffers.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Collections.Immutable.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Memory.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Reflection.Metadata.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Transformer.NET.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\WebActivatorEx.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Core.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.ComponentModel.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Util.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.BuildInterfaces.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Interop.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.ValueTuple.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Metadata.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Ext.Net.Utilities.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Shell.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Newtonsoft.Json.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\NuGet.Frameworks.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Buffers.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Collections.Immutable.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Memory.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Reflection.Metadata.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\Transformer.NET.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Core.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.ComponentModel.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Util.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.BuildInterfaces.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Interop.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\JetBrains.Platform.Metadata.xml
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\bin\Debug\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.csprojAssemblyReference.cache
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.exe.config
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.csproj.CoreCompileInputs.cache
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.exe.manifest
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.application
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.csproj.CopyComplete
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.exe
+C:\Users\zakar\OneDrive\Documents\Repos\MonsterBattleGame\MonsterBattle\obj\Debug\MonsterBattle.pdb

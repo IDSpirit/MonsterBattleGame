@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.PsiFeatures.VisualStudio.SinceVs15</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.PsiFeatures.VisualStudio.SinceVs15.Core.Psi.Xaml.XamlProjectFileLanguageService15">
+            <summary>
+            Special handling for XAML files in new .csproj format
+            See issued with tag XamlProjectFileLanguageService (https://youtrack.jetbrains.com/issues?q=%23RSRP%20%23XamlProjectFileLanguageService%20)
+            </summary>
+        </member>
+    </members>
+</doc>

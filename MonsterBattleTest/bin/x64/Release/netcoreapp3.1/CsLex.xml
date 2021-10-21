@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CsLex</name>
+    </assembly>
+    <members>
+        <member name="M:Lex.Alloc.NewNLPair(Lex.Spec)">
+            NewNLPair
+            return a new NfaPair that matches a new line
+            (\r\n?|\n)
+        </member>
+        <member name="F:Lex.Gen.tokens">
+            <summary>
+            Hashtable that maps characters to their corresponding lexical code for
+             the internal lexical analyzer. 
+            </summary>
+        </member>
+        <member name="M:Lex.Preprocess.PreprocessException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:Lex.Preprocess.PreprocessException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:JetBrains.ReSharper.CsLex.CsLexTaskStub">
+             <summary>
+             This complies with the <c>ProxyToSolutionCompiledTask</c> calling convention.
+            
+             Expected parameters (task items with metadata <c>ParameterName</c> equal to these):
+             • <c>Inputs</c>, multiple input files to process. Metadata:
+             • • <c>FullPath</c> — full path to the input file.
+             • • <c>OutputFile</c> — full path to the output file.
+             • • <c>References</c> — a collection of paths (like an item group substitution, i.e. semicolon-separated) for resolving “%include”s given just as file names.
+             • <c>DontCache</c> — do not use distributed cache, if present.
+             • <c>DistributedCacheSettings</c> — allows to turn on network upload.
+             <c></c>
+             </summary>
+        </member>
+    </members>
+</doc>

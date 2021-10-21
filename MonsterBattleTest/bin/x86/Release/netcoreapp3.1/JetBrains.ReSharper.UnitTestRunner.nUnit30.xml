@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.UnitTestRunner.nUnit30</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.UnitTestRunner.nUnit30.NUnitCallContextCleaner">
+            <summary>
+            This class ensures the <see cref="T:System.Runtime.Remoting.Messaging.CallContext"/> is correctly cleared
+            or restored around framework actions. This is important if running multiple assemblies within the same
+            process, to ensure no leakage from one assembly to the next. See https://github.com/nunit/nunit-console/issues/325
+            </summary>
+        </member>
+    </members>
+</doc>

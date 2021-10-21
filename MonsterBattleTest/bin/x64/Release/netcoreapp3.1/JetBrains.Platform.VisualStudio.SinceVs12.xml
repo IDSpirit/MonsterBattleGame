@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.VisualStudio.SinceVs12</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs12.IDE.RespawnTextControlOnSharedProjectContextSwitch">
+            <summary>
+            In VS 12 SP 1, when a Shared project switches its context to another Platform project, initiates a respawn of the involved text controls.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs12.Interop.Declarations.VsKnownSettingsContainers">
+            <summary>
+            A copy of VS <see cref="T:Microsoft.VisualStudio.Shell.KnownSettingsContainers"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs12.ProjectDocuments.VsRunningDocumentTableSinceVs12.IsMonikerValid(System.String)">
+            <summary>
+            Determines whether the given moniker exists in the RDT (since VS12).
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs12.ProjectDocuments.VsRunningDocumentTableSinceVs12.GetDocumentProjectGuid(JetBrains.VsIntegration.Interop.Declarations.VsShell.VSCOOKIE)">
+            <summary>
+            Returns the GUID for the project owning the document (since VS12).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs12.Shell.Notifications.IVsNotificationGuidProvider">
+            <summary>
+            Provider of stable guids to support Alway Ignore button (see RSRP-467729)
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs12.Shell.Notifications.IVsNotificationGuidProvider.TryCreateNotificationGuid(JetBrains.Application.Notifications.INotification)">
+            <summary>
+            Returns guid for known notifications. <see cref="F:System.Guid.Empty"/> otherwise
+            </summary>
+            <param name="notification">Notification to crfeate guid for</param>
+            <returns>Created guid or <see cref="F:System.Guid.Empty"/></returns>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs12.Shell.Notifications.IVsUserNotifications">
+            <summary>
+            Facade to Visual Studio notifications API. 
+            As the API might be missing inject it as <see cref="T:JetBrains.Application.Components.Optional`1"/> or as <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs12.Shell.Notifications.IVsUserNotifications.Show(JetBrains.Application.Notifications.INotification)">
+            <summary>
+            Shows notification
+            </summary>
+            <param name="notification">Notification to show</param>
+            <returns>True if service is available and the notfication is shown</returns>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs12.Shell.VsToolsOptionsMonitorSinceVs12.VsSettingsContainerChanged">
+            <summary>
+            <para>The signal is fired when VS settings container is changed.
+            It is not fired for modern VS14+ settings stores (e.g. when settings were synchronized with the cloud).
+            </para>
+            <para><see cref="F:JetBrains.Platform.VisualStudio.SinceVs12.Interop.Declarations.VsKnownSettingsContainers.ToolsOptions"/> means VS settings in the registry, which can be accessed using <see cref="T:JetBrains.Platform.VisualStudio.SinceVs10.Shell.VsSettingsManager"/>.</para>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs12.Shell.Zones.ISinceVs12EnvZone">
+            <summary>
+            Visual Studio integrated products, VS 12.0 and above.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs12.TextControl.FindWindowFrameForEmbeddedPeekTextView">
+            <summary>
+            Here we got the new “Embedded Peek Text View” inserted as an island inside a big text view, which we also would like to treat as a text control, and it actually does not have a VS Window Frame on its own (only document/toolwindow frames seem to have one).
+            We still need a valid VS window frame to operate the control correctly — at least for detecting its visible state (to suppress some operations when not) and for forcing it into view when needed.
+            We would create a window frame object for this control (not bound to VS entity), then find its parent text view sitting in a real document frame and create a window frame for it, then link the former as a child of the latter.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs12.TextControl.DefaultTextViewHostOptionsSinceVs12">
+            <summary>
+            Copy-pasted from VS12 class Microsoft.VisualStudio.Text.Editor.DefaultTextViewHostOptions, not to reference VS12 assembly
+            Microsoft.VisualStudio.Text.UI, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs12.TextControl.PredefinedMarginNamesSinceVs12">
+            <summary>
+            Copy-pasted from VS12 class Microsoft.VisualStudio.Text.Editor.PredefinedMarginNames, not to reference VS12 assembly
+            Microsoft.VisualStudio.Text.UI, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+            </summary>
+        </member>
+        <member name="T:Microsoft.Internal.VisualStudio.Shell.Interop.IVsSettingsChangeBroker">
+            <summary>
+            Taken from Microsoft.VisualStudio.Shell.Connected, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+            </summary>
+        </member>
+        <member name="T:Microsoft.Internal.VisualStudio.Shell.Interop.IVsSettingsChangeEvents">
+            <summary>
+            Taken from Microsoft.VisualStudio.Shell.Connected, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+            </summary>
+        </member>
+        <member name="M:Microsoft.Internal.VisualStudio.Shell.Interop.IVsSettingsChangeEvents.OnSettingsChanged(System.Guid)">
+            <summary>
+            The method is called when VS settings container (registry) is changed.
+            Note: this interface can't be used for modern VS14+ settings stores.
+            </summary>
+            <param name="guidContainer">See Microsoft.VisualStudio.Shell.KnownSettingsContainers</param>
+        </member>
+    </members>
+</doc>

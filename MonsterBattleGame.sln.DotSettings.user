@@ -1,0 +1,7 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1865de43_002D2c70_002D42f5_002Daed1_002D4f2c19043f99/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Stats_Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::73C0DBC0-1FFC-4BCD-82D8-7A0F921222B5::.NETCoreApp,Version=v3.1::MonsterBattleTest.Stats_Tests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::73C0DBC0-1FFC-4BCD-82D8-7A0F921222B5::.NETCoreApp,Version=v3.1::MonsterBattleTest.Pokemon_Tests.Given_ph_attack_move_Then_will_set_ph_defense_for_the_move&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

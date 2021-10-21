@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.VisualStudio.SinceVs11</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdInterfacePriority">
+            <summary>
+            Priority used by the Dispatcher to rank components when choosing an implementation to call.
+            Default value: Normal.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels">
+            <summary>
+            VS debugger extension component levels.
+            </summary>
+            <remarks>
+            https://github.com/Microsoft/ConcordExtensibilitySamples/wiki/Component-Levels
+            Te component level tells the Dispatcher a few things:
+            <para>1. When remote debugging, will this component load on the target computer or the Visual Studio computer? Components above 100,000 are IDE components and only load in the Visual Studio process.</para>
+            <para>2. The order components will be called in when making broadcast requests or sending events. Request calls are made on higher component levels before lower component levels (requests are top down). Event calls are made on lower level components before higher level components (events are bottom up).</para>
+            <para>3. The priority of a component when a non-broadcast request call is made. If there are multiple matching implementations for a method call, the Dispatcher will route the call to the highest level component. If the component calls the same method again, the Dispatcher will route the call to the next highest component. Note: Some calls are "callbacks" and like events, these are routed from the bottom up.</para>
+            <para>Select a level higher (larger number) than dependent components. For example, if the target process had an interpreter, and this interpreter was implemented in managed code, then a debug monitor which is built to add a debugging experience for the interpreter must have a higher component level than the Managed DM.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.StackQuery">
+            <summary>Components that wish to query the call stack</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.StackFilter">
+            <summary>Level where stacks can be filtered and annotated</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.SymbolStackWalkers">
+            <summary>Stack walkers that need access to symbols</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.IdeSymbolProvider">
+            <summary>Components which provide symbol information to rest of the debugger. The symbol path should not be used below this level.</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.IdeLevelBoundary">
+            <summary>
+            IDE Component Levels > 100,000 > Target Computer Component Levels
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.MonitorSymbolProvider">
+            <summary>Symbol providers when the symbolic state is built on the target computer (ex: interpreter, dynamically compiled/emitted code).</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.BreakpointConditionProcessor">
+            <summary>This level is for processing breakpoint conditions such as condition expressions and hit counts. Below this point all physical breakpoint events will be visible regardless of whether or not they have false conditions.</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.MonitorTaskProvider">
+            <summary>This is the level for task data mining in the target process.</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.MonitorCoordination">
+            <summary>Components which arbitrate between the various monitors for stepping, breakpoints by native address, stack walk, etc.</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.CustomDebugMonitor">
+            <summary>Reserved for third party debug monitors which wish to make use of services provided by the standard debug monitors.</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.RuntimeDebugMonitor">
+            <summary>Provides data inspection and execution control for managed/native/script code.</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels.BaseDebugMonitorServices">
+            <summary>Provides utility services to base debug monitors (ex: process creation) as well as pre-debugging services (ex: process enumeration).</summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsDebuggerExtensionAttribute.Level">
+            <summary>
+            Defines where this component is in the component hierarchy. This is an integer value between 1 and 1,000,000,000.
+            IDE Component Levels > 100,000 > Target Computer Component Levels
+            See <see cref="T:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdLevels"/> for details.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsDebuggerExtensionAttribute.WorkerProcessSupported">
+            <summary>
+            For Visual Studio 2019, Concord was extended to be able to load additional components outside of the IDE process.
+            This technology is named Worker Process Remoting. Worker Process Remoting allows Concord components which previously
+            had to be loaded into the IDE process (devenv.exe) to now be loaded in a separate 64-bit process
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsDebuggerExtensionAttribute.Filters">
+            <summary>
+            Defines the constraints under which the Dispatcher should call this class's implementation of the interfaces.
+            See <see cref="T:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdFilters"/> for details.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsDebuggerExtensionAttribute.Synchronized">
+            <summary>
+            Should the dispatcher synchronize all accesses to the component? (place a big lock around it). 
+            Default: false
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsDebuggerExtensionAttribute.StayLoaded">
+            <summary>
+            If set to true, the dispatcher will keep the component loaded during stop debugging as long as there are still outstanding IVsDebuggerDeployConnection objects. 
+            If this is not set, the component will be unloaded during stop debugging. 
+            Unloading for a native component means that the interface pointers obtained from the dll will have IUnknown.Release called, and then FreeLibrary will be called. 
+            For a managed component, this means that the dispatcher will drop its reference to the classes so that the GC can reclaim memory. 
+            Components that set this property to 'true' should not hold onto DIA (IDia*) or Metadata (IMetaData*) interfaces. Doing so will leave pdbs/modules locked.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsDebuggerExtensionAttribute.CallOnlyWhenLoaded">
+            <summary>
+            When true, the dispatcher will only call this method if the class has already been loaded. 
+            For example, this is used in the Microsoft Breakpoint Manager component to ignore module load notifications when the user hasn't set any breakpoints. 
+            Default: false.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsDebuggerExtensionAttribute.Priority">
+            <summary>
+            Priority used by the Dispatcher to rank components when choosing an implementation to call.
+            Default value: 1000 (Normal). See <see cref="T:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Debugger.VsdInterfacePriority"/>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Theming.VS11StatusBarColorsManager.CurrentStatusBarColors">
+            <summary>
+            First is background, Second is foreground
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Theming.VS11StatusBarColorsManager.CreateLiveStatusBarColors(JetBrains.Lifetimes.Lifetime)">
+            <summary>
+            Creates a pair of live properties with background and foreground colors for the status bar controls
+            </summary>
+            <param name="lifetime"></param>
+            <returns>first is Background, second is Foreground</returns>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Hacks.SuppressOwnerlessFloatingWindowsSinceVs11">
+            <summary>
+              <para>VS11 added a feature which allows floating windows to have a NULL owner (called "independent floating" in settings classes and "not "always stay on top"" in UI).</para>
+              <para>Unfortunately, VS10-derived implementation relies on owner HWND in cases related to window activation and command target activation. As WPF isn't a good MSO Component citizen, it notifies its owner window with NOTIFYOWNERACTIVATE ("NOTIFYOWNERACTIVATE{A982313C-756C-4da9-8BD0-0C375A45784B}" registered message) at Microsoft.VisualStudio.PlatformUI.Shell.Controls.CustomChromeWindow::WmActivate. Also, by the same reason, its Microsoft.VisualStudio.PlatformUI.Shell.Controls.FloatingWindow+MnemonicForwardingKeyboardInputSink::OnMnemonic relays keypresses to the HwndSource of the owner window.</para>
+              Our solution: suppress the feature, which makes the window always have an owner.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Hacks.SuppressOwnerlessFloatingWindowsSinceVs11.#ctor(JetBrains.Lifetimes.Lifetime,JetBrains.VsIntegration.Shell.VsToolsOptionsMonitor,JetBrains.Application.Settings.ISettingsStore,System.Action)">
+            <summary>
+            </summary>
+            <param name="lifetime"></param>
+            <param name="vsToolsOptionsMonitor"></param>
+            <param name="settingsStore"></param>
+            <param name="FEnsureOwner">Forces independent (= without owner) mode off. Depends on VS version (each has its own DLL copy), so brought out to inheritors.</param>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Install.AssemblyBindingRedirectionsRegistryInstaller">
+            <summary>
+            Starting with VS11, assembly binding redirections for the VS application can be written to the Registry.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Install.AssemblyBindingRedirectionsRegistryInstaller.GenerateBindingRedirectionSectionGuid(JetBrains.Application.BuildScript.Application.HostInfo,JetBrains.Metadata.Utils.AssemblyNameInfo)">
+            <summary>
+            Stable GUID for identifying the Registry section for our assembly.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs11.Shell.Zones.ISinceVs11EnvZone">
+            <summary>
+            Visual Studio integrated products, VS 11.0 and above.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs11.TextControl.Theming.Install.GenerateColorThemePkgDef.Install(JetBrains.Application.BuildScript.ProductPartCatalogForBuild,JetBrains.VsIntegration.Shell.Build.VsEnvironmentInformationArtifact)">
+            <summary>
+            This is not a build step on itself, but is called from a build step.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs11.TextControl.Theming.Install.GenerateColorThemePkgDefStep.Install(JetBrains.Application.BuildScript.ProductPartCatalogForBuild,JetBrains.VsIntegration.Shell.Build.VsEnvironmentInformationArtifact)">
+            <summary>
+            This is the build step entry point method.
+            The rest of the code is in a separate method so that JIT didn't fail on missing types (see NP-1316 Installation error occurs when install .NET products to computer with .NET 4.0 only).
+            On VS10 systems the body method won't get called and JITted, and with VS11+ those types must be present on the system, as it brings the relevant netfx version.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs11.TextControl.IVsFindManagerDataSourceProvider">
+            <summary>
+            Provides the access to the data source of the VS find manager.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.SinceVs11.TextControl.VsTextControlDevTenIncrementalSearchClientSinceVs11">
+            <summary>
+              VS11+ client (NOTE: in VS11+ this <see cref="T:Microsoft.VisualStudio.Text.IncrementalSearch.IIncrementalSearch" /> implementation is present, but is not active).
+              This is just an abstract base class because we have to use VS-version-specific interfaces to retrieve the data source, but since we got the datasource, the common implementation in this class takes over.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Platform.VisualStudio.SinceVs11.TextControl.VsTextControlDevTenIncrementalSearchClientSinceVs11.IsIncrementalSearchActive">
+            <summary>
+              Borrowed from <c>Microsoft.VisualStudio.Editor.Implementation.Find.FindManagerDataSource.PropertyNames</c>, which unfortunately has a nonpublic outer class.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Platform.VisualStudio.SinceVs11.TextControl.VsTextControlDevTenIncrementalSearchClientSinceVs11.GetDataSourceFromFindManager">
+            <summary>
+              Calls into a VS-version-specific DLL to get the data source.
+            </summary>
+        </member>
+    </members>
+</doc>
