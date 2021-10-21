@@ -1,2 +1,0 @@
-MainPackage=C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattling\bin\x86\Release\MonsterBattling_1.0.8.0_x86.msix
-SymbolPackage=C:\Users\zakar\OneDrive\Documents\MonsterBattleGame\MonsterBattling\obj\x86\Release\Symbols\MonsterBattling_1.0.8.0_x86.appxsym
